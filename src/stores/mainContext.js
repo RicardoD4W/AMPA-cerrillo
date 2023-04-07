@@ -3,6 +3,7 @@ import create from 'zustand'
 export const useMainStore = create((set, get) => ({
 	emailLogin: '',
 	passwordLogin: '',
+	name: '',
 	dataLogin: false,
 	tasasLogin: false,
 	role: undefined,
@@ -22,9 +23,13 @@ export const useMainStore = create((set, get) => ({
 	setTasas: (value) => {
 		set({ tasasLogin: value })
 	},
+	setName: (value) => {
+		set({ name: value })
+	},
 
 	logout: () => {
 		set({ emailLogin: '' })
+		set({ name: '' })
 		set({ passwordLogin: '' })
 		set({ dataLogin: false })
 		set({ tasasLogin: false })

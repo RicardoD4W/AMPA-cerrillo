@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useMainStore } from '../stores/mainContext'
 
 export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
-	const { setEmail, setPass, setData, setTasas } = useMainStore()
+	const { setEmail, setPass, setData, setTasas, setName } = useMainStore()
 
 	const [userEmail, setUserEmail] = useState('')
 	const [userPassword, setUserPassword] = useState('')
 	const [userData, setUserData] = useState(false)
 	const [userTasas, setUserTasas] = useState(false)
+	const [userName, setUserName] = useState('')
 
 	const handleSubmitForm = (e) => {
 		e.preventDefault()
@@ -15,10 +16,12 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 		setPass(userPassword)
 		setData(userData)
 		setTasas(userTasas)
+		setName(userName)
 
 		//TODO hacer regisro o login
 
 		setUserEmail('')
+		setUserName('')
 		setUserPassword('')
 		setUserData(false)
 		setUserTasas(false)
@@ -29,6 +32,9 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	}
 	const handleChangeInputPass = (e) => {
 		setUserPassword(e.target.value)
+	}
+	const handleChangeInputName = (e) => {
+		setUserName(e.target.value)
 	}
 
 	return (
@@ -46,9 +52,47 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 
 					<form
 						onSubmit={handleSubmitForm}
-						className='lg:bg-gray-800 md:flex md:items-center md:justify-center md:m-auto md:relative max-[640px]:absolute max-[640px]:bg-gray-800/60  max-[640px]:top-1/4 max-[640px]:w-full max-[640px]:backdrop-blur-sm '
+						className=' lg:bg-gray-800 md:flex md:items-center md:justify-center md:m-auto md:relative max-[640px]:absolute max-[640px]:bg-gray-800/60  max-[640px]:top-1/4 max-[640px]:w-full max-[640px]:backdrop-blur-sm '
 					>
 						<div className='flex flex-col gap-5 p-20 rounded lg:border'>
+							{valueButtonSubmit === 'Registrarse' && (
+								<div>
+									<label
+										htmlFor='website-user'
+										className='block mb-2 text-sm font-medium text-white'
+									>
+										Nombre Completo
+									</label>
+									<div className='flex'>
+										<span className='inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												fill='none'
+												viewBox='0 0 24 24'
+												strokeWidth={1.5}
+												stroke='currentColor'
+												className='w-5 h-5'
+											>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
+												/>
+											</svg>
+										</span>
+										<input
+											value={userName}
+											onChange={handleChangeInputName}
+											required
+											type='text'
+											id='website-user'
+											className='max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
+											placeholder='Nombre Apellido1 Apellido2'
+										/>
+									</div>
+								</div>
+							)}
+
 							<div>
 								<label
 									htmlFor='website-admin'
