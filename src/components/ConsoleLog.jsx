@@ -12,7 +12,7 @@ const ConsoleLog = () => {
 	} = useMainStore()
 
 	return (
-		<div className='absolute top-0 left-0 z-50 flex flex-col gap-3 p-5 text-white bg-gray-700 border border-white rounded'>
+		<div className='absolute top-0 left-0 z-50 flex flex-col gap-3 p-5 text-white bg-gray-700 border border-white rounded opacity-25'>
 			<p className='text-xs text-gray-300'>
 				ConsoleLog.jsx --&gt; ./src/components
 			</p>

@@ -5,6 +5,7 @@ import App from './App'
 import './index.css'
 import { GenericLogin } from './pages/GenericLogin'
 import ConsoleLog from './components/ConsoleLog'
+import PaginaPrincipal from './pages/PaginaPrincipal'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
 	{
 		path: '/registrarse',
 		element: <GenericLogin valueButtonSubmit='Registrarse' />,
+	},
+	{
+		path: 'pagina-principal',
+		element: <PaginaPrincipal />,
 	},
 	{
 		path: '/*',
