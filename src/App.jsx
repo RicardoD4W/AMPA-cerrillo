@@ -17,22 +17,22 @@ function App() {
 
 						<div className='  md:flex md:items-center md:justify-center md:m-auto md:relative max-[640px]:absolute max-[640px]:bg-gray-800/60  max-[640px]:top-1/4 max-[640px]:w-full max-[640px]:backdrop-blur-sm '>
 							<div className='flex flex-col gap-5 p-20 rounded'>
-								<div className='text-white flex flex-col gap-8 text-center '>
+								<div className='flex flex-col gap-8 text-center text-white '>
 									<Link
 										to='/iniciar-sesion'
-										className='transition-all  active:border-b-0 active:bg-blue-600 active:text-gray-300 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'
+										className='px-4 py-2 font-bold text-white transition-all bg-blue-500 border-b-4 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>
 										Iniciar Sesión
 									</Link>
 									<Link
 										to='/registrarse'
-										className='transition-all active:border-b-0 active:bg-blue-600 active:text-gray-300 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'
+										className='px-4 py-2 font-bold text-white transition-all bg-blue-500 border-b-4 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>
 										Registarse
 									</Link>
 									<Link
 										to='/pagina-principal'
-										className='transition-all active:border-b-0 active:bg-blue-600 active:text-gray-300 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'
+										className='px-4 py-2 font-bold text-white transition-all bg-blue-500 border-b-4 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>
 										Continuar como invitado
 									</Link>
