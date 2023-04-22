@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useMainStore } from '../stores/mainContext'
+import { useNavigate } from 'react-router-dom'
+import { useRegister, useLogin } from '../services/auth'
 
 export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	const { setEmail, setPass, setData, setTasas, setName } = useMainStore()
+	const navigate = useNavigate()
 
 	const [userEmail, setUserEmail] = useState('')
 	const [userPassword, setUserPassword] = useState('')
@@ -18,13 +21,24 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 		setTasas(userTasas)
 		setName(userName)
 
-		//TODO hacer regisro o login
-
-		setUserEmail('')
-		setUserName('')
-		setUserPassword('')
-		setUserData(false)
-		setUserTasas(false)
+		if (valueButtonSubmit === 'Registrarse') {
+			useRegister(userName, userEmail, userPassword).then((res) => {
+				if (res.status) {
+					setUserEmail('')
+					setUserName('')
+					setUserPassword('')
+					setUserData(false)
+					setUserTasas(false)
+					navigate('/pagina-principal')
+				} else {
+					res.message.map((msg) => console.log(msg))
+					//TODO hacer toast con errores
+				}
+			})
+		}
+		if (valueButtonSubmit === 'Iniciar Sesión') {
+			useLogin(userEmail, userPassword).then((res) => console.log(res))
+		}
 	}
 
 	const handleChangeInputEmail = (e) => {

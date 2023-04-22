@@ -7,6 +7,7 @@ export const useMainStore = create((set, get) => ({
 	dataLogin: false,
 	tasasLogin: false,
 	role: undefined,
+	bearerToken: '',
 
 	setEmail: (value) => {
 		set({ emailLogin: value })
@@ -26,6 +27,9 @@ export const useMainStore = create((set, get) => ({
 	setName: (value) => {
 		set({ name: value })
 	},
+	setBearerToken: (value) => {
+		set({ bearerToken: value })
+	},
 
 	logout: () => {
 		set({ emailLogin: '' })
@@ -34,5 +38,6 @@ export const useMainStore = create((set, get) => ({
 		set({ dataLogin: false })
 		set({ tasasLogin: false })
 		set({ role: undefined })
+		set({ bearerToken: '' })
 	},
 }))
