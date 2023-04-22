@@ -1,8 +1,15 @@
 import { useMainStore } from '../stores/mainContext'
 
 const PaginaPrincipal = () => {
-	const { emailLogin, passwordLogin, name, dataLogin, tasasLogin, role } =
-		useMainStore()
+	const {
+		emailLogin,
+		passwordLogin,
+		name,
+		dataLogin,
+		tasasLogin,
+		role,
+		bearerToken,
+	} = useMainStore()
 
 	return (
 		<>

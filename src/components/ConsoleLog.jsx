@@ -9,6 +9,7 @@ const ConsoleLog = () => {
 		tasasLogin,
 		logout,
 		name,
+		bearerToken,
 	} = useMainStore()
 
 	return (
@@ -35,6 +36,9 @@ const ConsoleLog = () => {
 			</p>
 			<p className='border-b'>
 				Role: <span className='font-medium'>{role}</span>{' '}
+			</p>
+			<p className='border-b'>
+				bearerToken: <span className='font-medium'>{bearerToken}</span>{' '}
 			</p>
 			<div>
 				<button onClick={logout} className='p-1 border border-white bodder-1'>
