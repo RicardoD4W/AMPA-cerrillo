@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { useMainStore } from '../stores/mainContext'
 import { useNavigate } from 'react-router-dom'
 import { useRegister, useLogin } from '../services/auth'
+import { ToastContainer } from 'react-toastify'
+import { useIsArrayNotification } from '../hooks/useIsArrayNotification'
 
 export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
-	const { setEmail, setPass, setData, setTasas, setName } = useMainStore()
+	const { setEmailLogin, setPassLogin, setTasasLogin, setDataLogin, setUser } =
+		useMainStore()
 	const navigate = useNavigate()
 
 	const [userEmail, setUserEmail] = useState('')
@@ -12,32 +15,43 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	const [userData, setUserData] = useState(false)
 	const [userTasas, setUserTasas] = useState(false)
 	const [userName, setUserName] = useState('')
+	const [isInvalid, setIsInvalid] = useState(false)
 
 	const handleSubmitForm = (e) => {
 		e.preventDefault()
-		setEmail(userEmail)
-		setPass(userPassword)
-		setData(userData)
-		setTasas(userTasas)
-		setName(userName)
+		setEmailLogin(userEmail)
+		setPassLogin(userPassword)
+		setDataLogin(userData)
+		setTasasLogin(userTasas)
+		setUser({ name: userName, email: userEmail })
 
 		if (valueButtonSubmit === 'Registrarse') {
 			useRegister(userName, userEmail, userPassword).then((res) => {
-				if (res.status) {
+				if (res.statusCode >= 200 && res.statusCode <= 206) {
 					setUserEmail('')
 					setUserName('')
 					setUserPassword('')
 					setUserData(false)
 					setUserTasas(false)
-					navigate('/pagina-principal')
+					setIsInvalid(false)
+					navigate('/iniciar-sesion')
 				} else {
-					res.message.map((msg) => console.log(msg))
-					//TODO hacer toast con errores
+					setIsInvalid(true)
+					useIsArrayNotification(res.message)
 				}
 			})
 		}
 		if (valueButtonSubmit === 'Iniciar Sesión') {
-			useLogin(userEmail, userPassword).then((res) => console.log(res))
+			useLogin(userEmail, userPassword).then((res) => {
+				if (res.statusCode >= 200 && res.statusCode <= 206) {
+					setUser({ ...res })
+					setIsInvalid(false)
+					navigate('/pagina-principal')
+				} else {
+					setIsInvalid(true)
+					useIsArrayNotification(res.message)
+				}
+			})
 		}
 	}
 
@@ -57,6 +71,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 				<p className='absolute top-0 z-10 w-full p-2 font-semibold text-center text-white bg-blue-600'>
 					AMPA EL CERRILLO del IES FERNANDO III
 				</p>
+				<ToastContainer />
 
 				<div className='relative items-center h-full bg-gray-700 sm:grid sm:grid-cols-2'>
 					<picture
@@ -115,7 +130,13 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									Email
 								</label>
 								<div className='flex'>
-									<span className='inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'>
+									<span
+										className={
+											isInvalid
+												? 'border-red-600 border-r-0 inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border   rounded-l-md'
+												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600  rounded-l-md'
+										}
+									>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
 											fill='none'
@@ -137,7 +158,11 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										required
 										type='email'
 										id='website-admin'
-										className='max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
+										className={
+											isInvalid
+												? 'border-red-600 border-l-0 max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700  placeholder-gray-400 text-white '
+												: 'max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
+										}
 										placeholder='nombre@gmail.com'
 									/>
 								</div>
@@ -151,7 +176,13 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									Password
 								</label>
 								<div className='flex'>
-									<span className='inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'>
+									<span
+										className={
+											isInvalid
+												? ' border-red-600 inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0  rounded-l-md'
+												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'
+										}
+									>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
 											fill='none'
@@ -173,7 +204,11 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										required
 										type='password'
 										id='website'
-										className='max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+										className={
+											isInvalid
+												? 'border-red-600 border-l-0 max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700  placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+												: 'max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+										}
 										placeholder='*********'
 									/>
 								</div>

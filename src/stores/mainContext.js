@@ -3,41 +3,44 @@ import create from 'zustand'
 export const useMainStore = create((set, get) => ({
 	emailLogin: '',
 	passwordLogin: '',
-	name: '',
+
 	dataLogin: false,
 	tasasLogin: false,
-	role: undefined,
-	bearerToken: '',
 
-	setEmail: (value) => {
+	user: {
+		dni: '',
+		email: '',
+		id: '',
+		img: '',
+		name: '',
+		paid: false,
+		phone: '',
+		roles: [],
+		token: '',
+	},
+
+	setEmailLogin: (value) => {
 		set({ emailLogin: value })
 	},
-	setPass: (value) => {
+	setPassLogin: (value) => {
 		set({ passwordLogin: value })
 	},
-	setData: (value) => {
+	setDataLogin: (value) => {
 		set({ dataLogin: value })
 	},
-	setRole: (value) => {
-		set({ role: value })
-	},
-	setTasas: (value) => {
+	setTasasLogin: (value) => {
 		set({ tasasLogin: value })
 	},
-	setName: (value) => {
-		set({ name: value })
-	},
-	setBearerToken: (value) => {
-		set({ bearerToken: value })
+
+	setUser: ({ statusCode, ...value }) => {
+		set(({ user }) => ({ user: { ...user, ...value } }))
 	},
 
 	logout: () => {
 		set({ emailLogin: '' })
-		set({ name: '' })
 		set({ passwordLogin: '' })
 		set({ dataLogin: false })
 		set({ tasasLogin: false })
-		set({ role: undefined })
-		set({ bearerToken: '' })
+		set({ user: {} })
 	},
 }))

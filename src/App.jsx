@@ -20,19 +20,19 @@ function App() {
 								<div className='flex flex-col gap-8 text-center text-white '>
 									<Link
 										to='/iniciar-sesion'
-										className='px-4 py-2 font-bold text-white transition-all bg-blue-500 border-b-4 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
+										className='px-4 py-3 font-bold text-white transition-all bg-blue-500 border-b-8 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>
 										Iniciar Sesión
 									</Link>
 									<Link
 										to='/registrarse'
-										className='px-4 py-2 font-bold text-white transition-all bg-blue-500 border-b-4 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
+										className='px-4 py-3 font-bold text-white transition-all bg-blue-500 border-b-8 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>
 										Registarse
 									</Link>
 									<Link
 										to='/pagina-principal'
-										className='px-4 py-2 font-bold text-white transition-all bg-blue-500 border-b-4 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
+										className='px-4 py-3 font-bold text-white transition-all bg-blue-500 border-b-8 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>
 										Continuar como invitado
 									</Link>
