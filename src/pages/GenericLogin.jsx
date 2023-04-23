@@ -1,9 +1,17 @@
 import { useState } from 'react'
 import { useMainStore } from '../stores/mainContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRegister, useLogin } from '../services/auth'
 import { ToastContainer } from 'react-toastify'
 import { useIsArrayNotification } from '../hooks/useIsArrayNotification'
+import { useCorrectRegisterNotify } from '../hooks/Notifications'
+import {
+	IconEmail,
+	IconNombreCompleto,
+	IconPassword,
+	IconPasswordInvisible,
+	IconPasswordVisible,
+} from '../components/Icons'
 
 export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	const { setEmailLogin, setPassLogin, setTasasLogin, setDataLogin, setUser } =
@@ -16,6 +24,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	const [userTasas, setUserTasas] = useState(false)
 	const [userName, setUserName] = useState('')
 	const [isInvalid, setIsInvalid] = useState(false)
+	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
 	const handleSubmitForm = (e) => {
 		e.preventDefault()
@@ -28,6 +37,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 		if (valueButtonSubmit === 'Registrarse') {
 			useRegister(userName, userEmail, userPassword).then((res) => {
 				if (res.statusCode >= 200 && res.statusCode <= 206) {
+					useCorrectRegisterNotify(userName)
 					setUserEmail('')
 					setUserName('')
 					setUserPassword('')
@@ -68,9 +78,12 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	return (
 		<div>
 			<div className='h-screen '>
-				<p className='absolute top-0 z-10 w-full p-2 font-semibold text-center text-white bg-blue-600'>
+				<Link
+					to='/'
+					className='absolute top-0 z-10 w-full p-2 font-semibold text-center text-white bg-blue-600'
+				>
 					AMPA EL CERRILLO del IES FERNANDO III
-				</p>
+				</Link>
 				<ToastContainer />
 
 				<div className='relative items-center h-full bg-gray-700 sm:grid sm:grid-cols-2'>
@@ -94,20 +107,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									</label>
 									<div className='flex'>
 										<span className='inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'>
-											<svg
-												xmlns='http://www.w3.org/2000/svg'
-												fill='none'
-												viewBox='0 0 24 24'
-												strokeWidth={1.5}
-												stroke='currentColor'
-												className='w-5 h-5'
-											>
-												<path
-													strokeLinecap='round'
-													strokeLinejoin='round'
-													d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
-												/>
-											</svg>
+											<IconNombreCompleto />
 										</span>
 										<input
 											value={userName}
@@ -137,20 +137,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600  rounded-l-md'
 										}
 									>
-										<svg
-											xmlns='http://www.w3.org/2000/svg'
-											fill='none'
-											viewBox='0 0 24 24'
-											strokeWidth={1.5}
-											stroke='currentColor'
-											className='w-5 h-5'
-										>
-											<path
-												strokeLinecap='round'
-												strokeLinejoin='round'
-												d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75'
-											/>
-										</svg>
+										<IconEmail />
 									</span>
 									<input
 										value={userEmail}
@@ -183,34 +170,46 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'
 										}
 									>
-										<svg
-											xmlns='http://www.w3.org/2000/svg'
-											fill='none'
-											viewBox='0 0 24 24'
-											strokeWidth={1.5}
-											stroke='currentColor'
-											className='w-5 h-5'
-										>
-											<path
-												strokeLinecap='round'
-												strokeLinejoin='round'
-												d='M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z'
-											/>
-										</svg>
+										<IconPassword />
 									</span>
 									<input
 										value={userPassword}
 										onChange={handleChangeInputPass}
 										required
-										type='password'
+										type={isPasswordVisible ? 'text' : 'password'}
 										id='website'
 										className={
 											isInvalid
-												? 'border-red-600 border-l-0 max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700  placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
-												: 'max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+												? 'border-red-600 border-x-0 max-[640px]:placeholder:text-[12px] rounded-none   border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700  placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+												: 'max-[640px]:placeholder:text-[12px] rounded-none   border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
 										}
 										placeholder='*********'
 									/>
+									<span
+										className={
+											isInvalid
+												? 'border-red-600 border-l-0 inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border  rounded-r-lg'
+												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-gray-600 rounded-r-lg'
+										}
+									>
+										{isPasswordVisible ? (
+											<label
+												onClick={() => {
+													setIsPasswordVisible(false)
+												}}
+											>
+												<IconPasswordVisible />
+											</label>
+										) : (
+											<label
+												onClick={() => {
+													setIsPasswordVisible(true)
+												}}
+											>
+												<IconPasswordInvisible />
+											</label>
+										)}
+									</span>
 								</div>
 
 								{valueButtonSubmit == 'Registrarse' && (

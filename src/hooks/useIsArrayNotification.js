@@ -6,3 +6,4 @@ export const useIsArrayNotification = (message) => {
         ? message.map((msg) => useErrorNotify(msg))
         : useErrorNotify(message)
 }
+
