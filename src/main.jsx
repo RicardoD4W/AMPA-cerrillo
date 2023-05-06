@@ -6,6 +6,8 @@ import './index.css'
 import { GenericLogin } from './pages/GenericLogin'
 import ConsoleLog from './components/ConsoleLog'
 import PaginaPrincipal from './pages/PaginaPrincipal'
+import UserPage from './pages/UserPage'
+import AdminPage from './pages/AdminPage'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -18,8 +20,16 @@ const router = createBrowserRouter([
 		element: <GenericLogin valueButtonSubmit='Registrarse' />,
 	},
 	{
-		path: 'pagina-principal',
+		path: '/pagina-principal',
 		element: <PaginaPrincipal />,
+	},
+	{
+		path: '/pagina-usuario',
+		element: <UserPage />,
+	},
+	{
+		path: '/pagina-admin',
+		element: <AdminPage />,
 	},
 	{
 		path: '/*',

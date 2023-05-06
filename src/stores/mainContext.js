@@ -1,5 +1,6 @@
 import create from 'zustand'
 
+
 export const useMainStore = create((set, get) => ({
 	emailLogin: '',
 	passwordLogin: '',
@@ -34,6 +35,10 @@ export const useMainStore = create((set, get) => ({
 
 	setUser: ({ statusCode, ...value }) => {
 		set(({ user }) => ({ user: { ...user, ...value } }))
+	},
+
+	setPaidTrue: () => {
+		set(({ user }) => ({ user: { ...user, paid: true } }))
 	},
 
 	logout: () => {
