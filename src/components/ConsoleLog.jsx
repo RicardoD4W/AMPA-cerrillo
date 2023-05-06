@@ -9,6 +9,7 @@ const ConsoleLog = () => {
 		user,
 		logout,
 		setPaidTrue,
+		guest,
 	} = useMainStore()
 
 	return (
@@ -45,6 +46,8 @@ const ConsoleLog = () => {
 			<button onClick={logout} className='p-1 border border-white bodder-1'>
 				Logout
 			</button>
+
+			<p>Guest: {guest.toString()}</p>
 		</div>
 	)
 }

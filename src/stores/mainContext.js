@@ -1,12 +1,15 @@
 import create from 'zustand'
 
 
+
 export const useMainStore = create((set, get) => ({
 	emailLogin: '',
 	passwordLogin: '',
 
 	dataLogin: false,
 	tasasLogin: false,
+
+	guest: false,
 
 	user: {
 		dni: '',
@@ -20,6 +23,9 @@ export const useMainStore = create((set, get) => ({
 		token: '',
 	},
 
+	setGuest: (value) => {
+		set({ guest: value })
+	},
 	setEmailLogin: (value) => {
 		set({ emailLogin: value })
 	},
@@ -47,5 +53,6 @@ export const useMainStore = create((set, get) => ({
 		set({ dataLogin: false })
 		set({ tasasLogin: false })
 		set({ user: {} })
+		set({ guest: false })
 	},
 }))

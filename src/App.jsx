@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom'
+import { useMainStore } from './stores/mainContext'
+import { useEffect } from 'react'
 
 function App() {
+	const { setGuest } = useMainStore()
+
+	useEffect(() => {
+		setGuest(false)
+	}, [])
+
 	return (
 		<>
 			<div>
@@ -31,6 +39,9 @@ function App() {
 										Registarse
 									</Link>
 									<Link
+										onClick={() => {
+											setGuest(true)
+										}}
 										to='/pagina-principal'
 										className='px-4 py-3 font-bold text-white transition-all bg-blue-500 border-b-8 border-blue-700 rounded active:border-b-0 active:bg-blue-600 active:text-gray-300 hover:bg-blue-400 hover:border-blue-500'
 									>

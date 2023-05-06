@@ -6,8 +6,8 @@ import './index.css'
 import { GenericLogin } from './pages/GenericLogin'
 import ConsoleLog from './components/ConsoleLog'
 import PaginaPrincipal from './pages/PaginaPrincipal'
-import UserPage from './pages/UserPage'
-import AdminPage from './pages/AdminPage'
+import UserPage from './pages/user/UserPage'
+import AdminPage from './pages/user/AdminPage'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
