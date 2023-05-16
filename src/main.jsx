@@ -8,6 +8,7 @@ import ConsoleLog from './components/ConsoleLog'
 import PaginaPrincipal from './pages/PaginaPrincipal'
 import UserPage from './pages/user/UserPage'
 import AdminPage from './pages/user/AdminPage'
+import GuestPage from './pages/user/GuestPage'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
 	{
 		path: '/pagina-admin',
 		element: <AdminPage />,
+	},
+	{
+		path: '/pagina-invitado',
+		element: <GuestPage />,
 	},
 	{
 		path: '/*',
