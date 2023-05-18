@@ -7,6 +7,7 @@ import { useMainStore } from '../../stores/mainContext'
 import { useNavigate } from 'react-router-dom'
 import { usePublicaciones } from '../../services/common'
 import Card from '../../components/Card'
+import { Comment } from 'react-loader-spinner'
 
 const GuestPage = () => {
 	const navigate = useNavigate()
@@ -29,7 +30,7 @@ const GuestPage = () => {
 			}
 			if (rol === 'USER_ROLE' && user.paid) {
 				// redirigir a pag, prioridad baja
-				navigate('/pagina-usuario')
+				navigate(`/pagina-usuario/${user.id}`)
 			}
 		})
 	}, [])
@@ -41,19 +42,32 @@ const GuestPage = () => {
 	return (
 		<>
 			<StructureLayout>
-				<Header />
+				<Header invitado />
 				<Layout>
 					<div className='inline-flex flex-wrap items-center justify-center gap-5'>
-						{publicaciones.map(
-							({ title, description, type, img, createdAt, id }) => (
-								<Card
-									key={id}
-									img={img[0]}
-									title={title}
-									subtitle={description}
-									type={type}
-								/>
+						{publicaciones ? (
+							publicaciones.map(
+								({ title, description, type, img, createdAt, id }) => (
+									<Card
+										key={id}
+										img={img[0]}
+										title={title}
+										subtitle={description}
+										type={type}
+									/>
+								)
 							)
+						) : (
+							<Comment
+								visible={true}
+								height='80'
+								width='80'
+								ariaLabel='comment-loading'
+								wrapperStyle={{}}
+								wrapperClass='comment-wrapper'
+								color='#fff'
+								backgroundColor='#4488ee'
+							/>
 						)}
 					</div>
 				</Layout>

@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useMainStore } from '../stores/mainContext'
 
-const Header = () => {
+const Header = ({ usuario, admin, invitado }) => {
 	const [navbar, setNavbar] = useState(false)
 	const [role, setRole] = useState('')
 
 	const user = useMainStore((state) => state.user)
+	const logout = useMainStore((state) => state.logout)
 	const guest = useMainStore((state) => state.guest)
 
 	const navigate = useNavigate()
@@ -23,7 +24,7 @@ const Header = () => {
 		})
 	}, [])
 
-	if (guest || (!guest && user.email)) {
+	if (invitado) {
 		return (
 			<nav className='my-6 rounded-lg shadow bg-slate-100'>
 				<div className='justify-between px-5 md:items-center md:flex '>
@@ -99,7 +100,7 @@ const Header = () => {
 				</div>
 			</nav>
 		)
-	} else if (role == 'ADMIN') {
+	} else if (admin) {
 		return (
 			<nav className='my-6 rounded-lg shadow bg-slate-100'>
 				<div className='justify-between px-5 md:items-center md:flex '>
@@ -175,7 +176,7 @@ const Header = () => {
 				</div>
 			</nav>
 		)
-	} else if (role == 'USUARIO') {
+	} else if (usuario) {
 		return (
 			<nav className='my-6 rounded-lg shadow bg-slate-100'>
 				<div className='justify-between px-5 md:items-center md:flex '>
@@ -235,15 +236,30 @@ const Header = () => {
 								navbar ? 'block' : 'hidden'
 							}`}
 						>
-							<ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
+							<ul className='[&>li]:transition-colors items-center justify-center space-y-8  md:flex md:space-x-6 md:space-y-0'>
 								<li className='text-gray-600 hover:text-blue-600'>
-									<Link to='/registrarse'>Registrarse</Link>
+									<Link to={`/pagina-usuario/${user.id}`}>Noticias</Link>
 								</li>
 								<li className='text-gray-600 hover:text-blue-600'>
-									<Link to='/iniciar-sesion'>Iniciar Sesión</Link>
+									<Link to={`/pagina-usuario/${user.id}/datos-personales`}>
+										Datos Personales
+									</Link>
 								</li>
-								<li className='pb-5 text-gray-600 md:pb-0 hover:text-blue-600'>
-									<Link to='/pagina-principal'>Página principal</Link>
+								<li className='text-gray-600 hover:text-blue-600'>
+									<Link to={`/pagina-usuario/${user.id}/suscripcion`}>
+										Suscripción
+									</Link>
+								</li>
+								<li className='text-gray-600 hover:text-blue-600'>
+									<Link to={`/pagina-usuario/${user.id}/sugerencias`}>
+										Sugerencias
+									</Link>
+								</li>
+								<li
+									onClick={logout}
+									className='pb-5 text-gray-600 underline decoration-transparent hover:decoration-[#FF0000] md:pb-0 hover:text-red-600'
+								>
+									<Link to='/pagina-principal'>Logout</Link>
 								</li>
 							</ul>
 						</div>

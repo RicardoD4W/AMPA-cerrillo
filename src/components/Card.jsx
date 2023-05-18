@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import './scroll.css'
 
 const Card = ({ title, subtitle, type, img }) => {
 	const [color, setColor] = useState()
@@ -14,7 +15,7 @@ const Card = ({ title, subtitle, type, img }) => {
 	}, [])
 
 	return (
-		<div className='max-w-[300px]  border rounded-lg shadow bg-slate-50 border-slate-300'>
+		<div className='max-w-[300px]  border rounded-lg shadow bg-slate-50 border-slate-300 '>
 			<figure>
 				<img
 					className='rounded-t-lg object-cover w-full h-[150px] object-center'
@@ -27,7 +28,7 @@ const Card = ({ title, subtitle, type, img }) => {
 					{title}
 				</h5>
 
-				<p className=' border-slate-400  overflow-auto max-h-[100px] mb-2 text-sm font-normal text-slate-500'>
+				<p className=' border-slate-400  overflow-auto max-h-[100px] mb-2 text-sm font-normal text-slate-500 pr-2'>
 					{subtitle}
 				</p>
 

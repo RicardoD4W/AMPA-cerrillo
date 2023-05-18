@@ -18,11 +18,11 @@ const PaginaPrincipal = () => {
 				}
 				if (rol === 'ADMIN_ROLE' && user.paid) {
 					// redirigir a pag, prioridad media
-					navigate('/pagina-admin')
+					navigate(`/pagina-admin/${user.id}`)
 				}
 				if (rol === 'USER_ROLE' && user.paid) {
 					// redirigir a pag, prioridad baja
-					navigate('/pagina-usuario')
+					navigate(`/pagina-usuario/${user.id}`)
 				}
 			})
 		}, [user.paid, user.roles])

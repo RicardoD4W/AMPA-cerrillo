@@ -9,6 +9,10 @@ import PaginaPrincipal from './pages/PaginaPrincipal'
 import UserPage from './pages/user/UserPage'
 import AdminPage from './pages/user/AdminPage'
 import GuestPage from './pages/user/GuestPage'
+import Header from './components/Header'
+import DatosPersonales from './components/DatosPersonales'
+import Sugerencias from './components/Sugerencias'
+import Suscripcion from './components/Suscripcion'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -25,11 +29,25 @@ const router = createBrowserRouter([
 		element: <PaginaPrincipal />,
 	},
 	{
-		path: '/pagina-usuario',
+		path: '/pagina-usuario/:id',
 		element: <UserPage />,
+		children: [
+			{
+				path: 'datos-personales',
+				element: <DatosPersonales />,
+			},
+			{
+				path: 'suscripcion',
+				element: <Suscripcion />,
+			},
+			{
+				path: 'sugerencias',
+				element: <Sugerencias />,
+			},
+		],
 	},
 	{
-		path: '/pagina-admin',
+		path: '/pagina-admin/:id',
 		element: <AdminPage />,
 	},
 	{

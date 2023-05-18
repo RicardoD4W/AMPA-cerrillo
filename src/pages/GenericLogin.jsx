@@ -5,6 +5,7 @@ import { useRegister, useLogin } from '../services/auth'
 import { ToastContainer } from 'react-toastify'
 import { useIsArrayNotification } from '../hooks/useIsArrayNotification'
 import { useCorrectRegisterNotify } from '../hooks/Notifications'
+
 import {
 	IconEmail,
 	IconNombreCompleto,
@@ -14,8 +15,15 @@ import {
 } from '../components/Icons'
 
 export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
-	const { setEmailLogin, setPassLogin, setTasasLogin, setDataLogin, setUser } =
-		useMainStore()
+	const {
+		setEmailLogin,
+		setGuest,
+		setPassLogin,
+		setTasasLogin,
+		setDataLogin,
+		setUser,
+		user,
+	} = useMainStore()
 	const navigate = useNavigate()
 
 	const [userEmail, setUserEmail] = useState('')
@@ -56,7 +64,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 				if (res.statusCode >= 200 && res.statusCode <= 206) {
 					setUser({ ...res })
 					setIsInvalid(false)
-					navigate('/pagina-principal')
+					setGuest(false)
+					navigate(`/pagina-principal`)
 				} else {
 					setIsInvalid(true)
 					useIsArrayNotification(res.message)
@@ -84,6 +93,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 				>
 					AMPA EL CERRILLO del IES FERNANDO III
 				</Link>
+
 				<ToastContainer />
 
 				<div className='relative items-center h-full bg-gray-700 sm:grid sm:grid-cols-2'>
