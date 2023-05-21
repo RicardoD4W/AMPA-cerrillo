@@ -245,11 +245,12 @@ const Header = ({ usuario, admin, invitado }) => {
 										Datos Personales
 									</Link>
 								</li>
-								<li className='text-gray-600 hover:text-blue-600'>
+								{/* TODO Pagos automatizados para mas adelante */}
+								{/* <li className='text-gray-600 hover:text-blue-600'>
 									<Link to={`/pagina-usuario/${user.id}/suscripcion`}>
 										Suscripción
 									</Link>
-								</li>
+								</li> */}
 								<li className='text-gray-600 hover:text-blue-600'>
 									<Link to={`/pagina-usuario/${user.id}/sugerencias`}>
 										Sugerencias

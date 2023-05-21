@@ -28,24 +28,24 @@ const router = createBrowserRouter([
 		path: '/pagina-principal',
 		element: <PaginaPrincipal />,
 	},
+
 	{
 		path: '/pagina-usuario/:id',
 		element: <UserPage />,
-		children: [
-			{
-				path: 'datos-personales',
-				element: <DatosPersonales />,
-			},
-			{
-				path: 'suscripcion',
-				element: <Suscripcion />,
-			},
-			{
-				path: 'sugerencias',
-				element: <Sugerencias />,
-			},
-		],
 	},
+	{
+		path: '/pagina-usuario/:id/datos-personales',
+		element: <DatosPersonales />,
+	},
+	{
+		path: '/pagina-usuario/:id/suscripcion',
+		element: <Suscripcion />,
+	},
+	{
+		path: '/pagina-usuario/:id/sugerencias',
+		element: <Sugerencias />,
+	},
+
 	{
 		path: '/pagina-admin/:id',
 		element: <AdminPage />,
