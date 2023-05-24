@@ -37,4 +37,37 @@ const useCorrectRegisterNotify = (userName) =>
 		theme: 'colored',
 	})
 
-export { useErrorNotify, useCorrectLoginNotify, useCorrectRegisterNotify }
+const useCorrectChangeUserDataNotify = () =>
+	toast.success(`Sus datos se han actualizado correctamnete`, {
+		position: 'top-center',
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		theme: 'colored',
+	})
+
+const useCorrectChangeChildDataNotify = (childName) =>
+	toast.success(
+		`Los datos de su hijo ${childName}, se han actualizado correctamnete`,
+		{
+			position: 'top-center',
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		}
+	)
+
+export {
+	useErrorNotify,
+	useCorrectLoginNotify,
+	useCorrectRegisterNotify,
+	useCorrectChangeUserDataNotify,
+	useCorrectChangeChildDataNotify,
+}

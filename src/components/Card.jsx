@@ -1,8 +1,15 @@
+import { useEffect, useState } from 'react'
 import './scroll.css'
 
-const Card = ({ title, subtitle, type, img, files }) => {
+const Card = ({ title, subtitle, type, img, files, fecha }) => {
+	const [fechaPublicacion, setFechaPublicacion] = useState()
+
+	useEffect(() => {
+		setFechaPublicacion(new Date(fecha).toLocaleDateString())
+	}, [])
+
 	return (
-		<div className='max-w-[300px]  border rounded-lg shadow bg-slate-50 border-slate-300  overflow-hidden'>
+		<div className='max-w-[300px] min-w-[214px]  border rounded-lg shadow bg-slate-50 border-slate-300  overflow-hidden'>
 			<figure>
 				<img
 					className='rounded-t-lg object-cover w-full h-[150px] object-center'
@@ -11,8 +18,11 @@ const Card = ({ title, subtitle, type, img, files }) => {
 				/>
 			</figure>
 			<div className='p-3 max-h-[205px]  '>
-				<h5 className='mb-2 text-xl font-bold tracking-tight text-slate-800'>
+				<h5 className='mb-2 overflow-auto text-lg font-bold tracking-tight text-slate-800'>
 					{title}
+					<span className='float-right mr-1 text-sm italic font-normal'>
+						{fechaPublicacion}
+					</span>
 				</h5>
 
 				<p className=' border-slate-400  overflow-auto max-h-[100px] mb-2 text-sm font-normal text-slate-500 pr-2'>

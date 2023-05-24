@@ -13,6 +13,11 @@ const UserPage = () => {
 	const user = useMainStore((state) => state.user)
 	const navigate = useNavigate()
 	const [publicaciones, setPublicaciones] = useState([])
+	const [publicacionesFiltradas, setPublicacionesFiltradas] = useState('')
+	const [filtro, setFiltro] = useState('')
+	const [isExtraescolar, setIsExtraescolar] = useState(true)
+	const [isEscolar, setIsEscolar] = useState(true)
+	const [offset, setOffset] = useState(0)
 
 	useEffect(() => {
 		!user.email &&
@@ -24,49 +29,172 @@ const UserPage = () => {
 
 	useEffect(() => {
 		usePublicacionesUser(user.token).then(setPublicaciones)
+		usePublicacionesUser(user.token).then(setPublicacionesFiltradas)
 	}, [])
 
+	const handleOnChangeInputTitlte = () => {
+		setFiltro(event.target.value)
+		setPublicacionesFiltradas(
+			publicaciones.filter((publicacion) =>
+				publicacion.title
+					.toLowerCase()
+					.trim()
+					.includes(event.target.value.toLowerCase().trim())
+			)
+		)
+	}
+
+	const handleOnCheckEscolar = () => {
+		setIsEscolar(!isEscolar)
+
+		if (isEscolar) {
+			setIsExtraescolar(true)
+			setPublicacionesFiltradas(
+				publicaciones.filter(
+					(publicacion) => isEscolar && publicacion.type === 'ESCOLARES'
+				)
+			)
+		} else {
+			setPublicacionesFiltradas(publicaciones)
+		}
+	}
+
+	const handleOnCheckExtraEscolar = () => {
+		setIsExtraescolar(!isExtraescolar)
+
+		if (isExtraescolar) {
+			setIsEscolar(true)
+			setPublicacionesFiltradas(
+				publicaciones.filter(
+					(publicacion) =>
+						isExtraescolar && publicacion.type === 'EXTRAESCOLARES'
+				)
+			)
+		} else {
+			setPublicacionesFiltradas(publicaciones)
+		}
+	}
+
+	const handleOnGoPreviusPage = () => {
+		if (offset == 0) return
+		setOffset(offset - 4)
+		usePublicacionesUser(user.token, offset).then(setPublicaciones)
+		usePublicacionesUser(user.token, offset).then(setPublicacionesFiltradas)
+	}
+	const handleOnGoNextPage = () => {
+		if (!publicaciones.length > 0) return
+		setOffset(offset + 4)
+		usePublicacionesUser(user.token, offset).then(setPublicaciones)
+		usePublicacionesUser(user.token, offset).then(setPublicacionesFiltradas)
+	}
 	return (
 		<>
 			<StructureLayout>
 				<Header usuario />
 				<Layout>
-					<div className='inline-flex flex-wrap items-center justify-center gap-5'>
-						{publicaciones ? (
-							publicaciones.map(
-								({
-									status,
-									title,
-									description,
-									type,
-									img,
-									createdAt,
-									id,
-									files,
-								}) =>
-									status && (
-										<Card
-											key={id}
-											img={img[0]}
-											title={title}
-											subtitle={description}
-											type={type}
-											files={files}
-										/>
-									)
-							)
-						) : (
-							<Comment
-								visible={true}
-								height='80'
-								width='80'
-								ariaLabel='comment-loading'
-								wrapperStyle={{}}
-								wrapperClass='comment-wrapper'
-								color='#fff'
-								backgroundColor='#4488ee'
+					<div>
+						<section className='flex sm:justify-between justify-center [&>input]:rounded m-3 flex-wrap  '>
+							<input
+								type='text'
+								placeholder='Busque por título'
+								value={filtro}
+								onChange={handleOnChangeInputTitlte}
 							/>
-						)}
+							<div className='flex items-center gap-5 text-center'>
+								<svg
+									onClick={handleOnGoPreviusPage}
+									xmlns='http://www.w3.org/2000/svg'
+									fill='none'
+									viewBox='0 0 24 24'
+									strokeWidth={1.5}
+									stroke='currentColor'
+									className={`w-6 h-6 transition-transform cursor-pointer hover:scale-125 ${
+										offset == 0 &&
+										'text-gray-400 hover:scale-100 cursor-not-allowed'
+									}`}
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										d='M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18'
+									/>
+								</svg>
+								<svg
+									onClick={handleOnGoNextPage}
+									xmlns='http://www.w3.org/2000/svg'
+									fill='none'
+									viewBox='0 0 24 24'
+									strokeWidth={1.5}
+									stroke='currentColor'
+									className='w-6 h-6 transition-transform cursor-pointer hover:scale-125'
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
+									/>
+								</svg>
+							</div>
+							<div className='flex text-center gap-x-5'>
+								<label>
+									<span>Extraescolares</span>{' '}
+									<input
+										className='accent-slate-500'
+										type='checkbox'
+										checked={!isExtraescolar}
+										onChange={handleOnCheckExtraEscolar}
+									/>
+								</label>
+								<label>
+									<span>Escolares</span>{' '}
+									<input
+										className=' accent-slate-500'
+										type='checkbox'
+										checked={!isEscolar}
+										onChange={handleOnCheckEscolar}
+									/>{' '}
+								</label>
+							</div>
+						</section>
+
+						<div className='inline-flex flex-wrap items-center justify-center gap-5'>
+							{publicacionesFiltradas.length > 0 ? (
+								publicacionesFiltradas.map(
+									({
+										status,
+										title,
+										description,
+										type,
+										img,
+										createdAt,
+										id,
+										files,
+									}) =>
+										status && (
+											<Card
+												key={id}
+												img={img[0]}
+												title={title}
+												subtitle={description}
+												type={type}
+												files={files}
+												fecha={createdAt._nanoseconds}
+											/>
+										)
+								)
+							) : (
+								<Comment
+									visible={true}
+									height='80'
+									width='80'
+									ariaLabel='comment-loading'
+									wrapperStyle={{}}
+									wrapperClass='comment-wrapper'
+									color='#fff'
+									backgroundColor='#4488ee'
+								/>
+							)}
+						</div>
 					</div>
 				</Layout>
 				<Footer />
