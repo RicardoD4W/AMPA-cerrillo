@@ -13,7 +13,7 @@ const UserPage = () => {
 	const user = useMainStore((state) => state.user)
 	const navigate = useNavigate()
 	const [publicaciones, setPublicaciones] = useState([])
-	const [publicacionesFiltradas, setPublicacionesFiltradas] = useState('')
+	const [publicacionesFiltradas, setPublicacionesFiltradas] = useState([])
 	const [filtro, setFiltro] = useState('')
 	const [isExtraescolar, setIsExtraescolar] = useState(true)
 	const [isEscolar, setIsEscolar] = useState(true)
@@ -28,8 +28,12 @@ const UserPage = () => {
 	}, [])
 
 	useEffect(() => {
-		usePublicacionesUser(user.token).then(setPublicaciones)
-		usePublicacionesUser(user.token).then(setPublicacionesFiltradas)
+		usePublicacionesUser(user.token).then((res) => {
+			setPublicaciones(res.Adverts)
+		})
+		usePublicacionesUser(user.token).then((res) => {
+			setPublicacionesFiltradas(res.Adverts)
+		})
 	}, [])
 
 	const handleOnChangeInputTitlte = () => {
@@ -76,17 +80,14 @@ const UserPage = () => {
 	}
 
 	const handleOnGoPreviusPage = () => {
-		if (offset == 0) return
+		if (offset <= 0) return
 		setOffset(offset - 4)
-		usePublicacionesUser(user.token, offset).then(setPublicaciones)
-		usePublicacionesUser(user.token, offset).then(setPublicacionesFiltradas)
 	}
 	const handleOnGoNextPage = () => {
-		if (!publicaciones.length > 0) return
+		if (offset + 4 >= publicaciones.length) return
 		setOffset(offset + 4)
-		usePublicacionesUser(user.token, offset).then(setPublicaciones)
-		usePublicacionesUser(user.token, offset).then(setPublicacionesFiltradas)
 	}
+
 	return (
 		<>
 			<StructureLayout>
@@ -100,7 +101,7 @@ const UserPage = () => {
 								value={filtro}
 								onChange={handleOnChangeInputTitlte}
 							/>
-							<div className='flex items-center gap-5 text-center'>
+							{/* <div className='flex items-center gap-5 text-center'>
 								<svg
 									onClick={handleOnGoPreviusPage}
 									xmlns='http://www.w3.org/2000/svg'
@@ -108,9 +109,10 @@ const UserPage = () => {
 									viewBox='0 0 24 24'
 									strokeWidth={1.5}
 									stroke='currentColor'
-									className={`w-6 h-6 transition-transform cursor-pointer hover:scale-125 ${
-										offset == 0 &&
-										'text-gray-400 hover:scale-100 cursor-not-allowed'
+									className={`w-6 h-6 transition-transform hover:scale-125 ${
+										offset <= 0
+											? 'text-gray-400 hover:scale-100 cursor-not-allowed'
+											: 'cursor-pointer'
 									}`}
 								>
 									<path
@@ -126,7 +128,11 @@ const UserPage = () => {
 									viewBox='0 0 24 24'
 									strokeWidth={1.5}
 									stroke='currentColor'
-									className='w-6 h-6 transition-transform cursor-pointer hover:scale-125'
+									className={`w-6 h-6 transition-transform  hover:scale-125 ${
+										offset + 4 >= publicaciones.length
+											? 'text-gray-400 hover:scale-100 cursor-not-allowed'
+											: 'cursor-pointer'
+									}`}
 								>
 									<path
 										strokeLinecap='round'
@@ -134,7 +140,7 @@ const UserPage = () => {
 										d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
 									/>
 								</svg>
-							</div>
+							</div> */}
 							<div className='flex text-center gap-x-5'>
 								<label>
 									<span>Extraescolares</span>{' '}
@@ -159,29 +165,31 @@ const UserPage = () => {
 
 						<div className='inline-flex flex-wrap items-center justify-center gap-5'>
 							{publicacionesFiltradas.length > 0 ? (
-								publicacionesFiltradas.map(
-									({
-										status,
-										title,
-										description,
-										type,
-										img,
-										createdAt,
-										id,
-										files,
-									}) =>
-										status && (
-											<Card
-												key={id}
-												img={img[0]}
-												title={title}
-												subtitle={description}
-												type={type}
-												files={files}
-												fecha={createdAt._nanoseconds}
-											/>
-										)
-								)
+								publicacionesFiltradas
+									// .slice(offset, offset + 4)
+									.map(
+										({
+											status,
+											title,
+											description,
+											type,
+											img,
+											createdAt,
+											id,
+											files,
+										}) =>
+											status && (
+												<Card
+													key={id}
+													img={img[0]}
+													title={title}
+													subtitle={description}
+													type={type}
+													files={files}
+													fecha={createdAt._nanoseconds}
+												/>
+											)
+									)
 							) : (
 								<Comment
 									visible={true}

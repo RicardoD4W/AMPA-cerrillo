@@ -36,7 +36,7 @@ const GuestPage = () => {
 	}, [])
 	useEffect(() => {
 		if (!guest) return
-		usePublicaciones().then(setPublicaciones)
+		usePublicaciones().then((res) => setPublicaciones(res.Adverts))
 	}, [])
 
 	return (

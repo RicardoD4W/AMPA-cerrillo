@@ -12,7 +12,7 @@ const usePublicaciones = () => {
 
 }
 
-const usePublicacionesUser = (bearer, offset = 0, limit = 8,) => {
+const usePublicacionesUser = (bearer) => {
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + bearer);
 
@@ -21,7 +21,7 @@ const usePublicacionesUser = (bearer, offset = 0, limit = 8,) => {
         headers: myHeaders,
         redirect: 'follow'
     };
-    return fetch(USUARIOS_PUBLI_ENDPOINT + `&limit=${limit}&offset=${offset}&orderBy=asc&&status=true`, requestOptions)
+    return fetch(USUARIOS_PUBLI_ENDPOINT, requestOptions)
         .then(response => response.json())
 
 }

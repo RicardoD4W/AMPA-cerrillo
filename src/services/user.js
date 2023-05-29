@@ -1,6 +1,7 @@
 const VITE_PATCH_DATOS_USUARIO_POR_ID = import.meta.env.VITE_PATCH_DATOS_USUARIO_POR_ID
 const VITE_BUSCAR_HIJOS_POR_ID = import.meta.env.VITE_BUSCAR_HIJOS_POR_ID
 const VITE_CAMBIAR_DATOS_HIJOS_POR_ID = import.meta.env.VITE_CAMBIAR_DATOS_HIJOS_POR_ID
+const VITE_ENVIAR_SUGERENCIA_DE_USUARIO = import.meta.env.VITE_ENVIAR_SUGERENCIA_DE_USUARIO
 
 const useChangeDataUser = (bearer, name, dni, phone, email, id) => {
     var myHeaders = new Headers();
@@ -63,4 +64,26 @@ const useChangeDataChild = (childId, bearer, childName, childCourse, childClassr
 
 }
 
-export { useChangeDataUser, useSearchChildsById, useChangeDataChild }
+const usePostUserSuggestion = (bearer, title, description, idUser) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer " + bearer);
+
+    var raw = JSON.stringify({
+        "title": title,
+        "description": description
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    return fetch(VITE_ENVIAR_SUGERENCIA_DE_USUARIO + idUser, requestOptions)
+        .then(response => response.json())
+
+}
+
+export { useChangeDataUser, useSearchChildsById, useChangeDataChild, usePostUserSuggestion }

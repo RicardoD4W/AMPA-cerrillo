@@ -89,14 +89,14 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 			<div className='h-screen '>
 				<Link
 					to='/'
-					className='absolute top-0 z-10 w-full p-2 font-semibold text-center text-white bg-blue-600'
+					className='absolute top-0 z-10 w-full p-2 font-semibold text-center text-white bg-slate-500'
 				>
 					AMPA EL CERRILLO del IES FERNANDO III
 				</Link>
 
 				<ToastContainer />
 
-				<div className='relative items-center h-full bg-gray-700 sm:grid sm:grid-cols-2'>
+				<div className='relative items-center h-full bg-slate-300 sm:grid sm:grid-cols-2'>
 					<picture
 						className='relative flex items-center justify-center w-full h-full bg-[url("./assets/ampa.jpg")]'
 						style={{ backgroundSize: '100% 100%' }}
@@ -104,9 +104,9 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 
 					<form
 						onSubmit={handleSubmitForm}
-						className=' lg:bg-gray-800 md:flex md:items-center md:justify-center md:m-auto md:relative max-[640px]:absolute max-[640px]:bg-gray-800/60  max-[640px]:top-1/4 max-[640px]:w-full max-[640px]:backdrop-blur-sm '
+						className='rounded lg:bg-slate-400/70 md:flex md:items-center md:justify-center md:m-auto md:relative max-[640px]:absolute max-[640px]:bg-gray-800/60  max-[640px]:top-1/4 max-[640px]:w-full max-[640px]:backdrop-blur-sm '
 					>
-						<div className='flex flex-col gap-5 p-20 rounded lg:border'>
+						<div className='flex flex-col gap-5 p-20 rounded lg:border lg:border-slate-300'>
 							{valueButtonSubmit === 'Registrarse' && (
 								<div>
 									<label
@@ -116,7 +116,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										Nombre Completo
 									</label>
 									<div className='flex'>
-										<span className='inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'>
+										<span className='inline-flex items-center px-3 text-sm border border-r-0 text-slate-700 bg-slate-300 border-slate-300 rounded-l-md'>
 											<IconNombreCompleto />
 										</span>
 										<input
@@ -125,7 +125,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 											required
 											type='text'
 											id='website-user'
-											className='max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
+											className='max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200 border-slate-200 placeholder-slate-500 text-slate-900 '
 											placeholder='Nombre Apellido1 Apellido2'
 										/>
 									</div>
@@ -143,8 +143,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									<span
 										className={
 											isInvalid
-												? 'border-red-600 border-r-0 inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border   rounded-l-md'
-												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600  rounded-l-md'
+												? 'border-red-600 border-r-0 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border rounded-l-md'
+												: 'inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0 border-slate-300 rounded-l-md'
 										}
 									>
 										<IconEmail />
@@ -157,8 +157,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										id='website-admin'
 										className={
 											isInvalid
-												? 'border-red-600 border-l-0 max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700  placeholder-gray-400 text-white '
-												: 'max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
+												? 'border-red-600 border-l-0 max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200  placeholder-slate-400 text-slate-600 '
+												: 'max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200 border-slate-200 placeholder-slate-500 text-slate-900 '
 										}
 										placeholder='nombre@gmail.com'
 									/>
@@ -176,8 +176,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									<span
 										className={
 											isInvalid
-												? ' border-red-600 inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0  rounded-l-md'
-												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-r-0 border-gray-600 rounded-l-md'
+												? ' border-red-600 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0  rounded-l-md'
+												: 'inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0 border-slate-300 rounded-l-md'
 										}
 									>
 										<IconPassword />
@@ -190,16 +190,16 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										id='website'
 										className={
 											isInvalid
-												? 'border-red-600 border-x-0 max-[640px]:placeholder:text-[12px] rounded-none   border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700  placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
-												: 'max-[640px]:placeholder:text-[12px] rounded-none   border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+												? 'border-red-600 border-x-0 max-[640px]:placeholder:text-[12px] rounded-none   border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200  placeholder-slate-400 text-slate-600 '
+												: 'max-[640px]:placeholder:text-[12px] rounded-none   border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200 border-slate-200 placeholder-slate-500 text-slate-900 '
 										}
 										placeholder='*********'
 									/>
 									<span
 										className={
 											isInvalid
-												? 'border-red-600 border-l-0 inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border  rounded-r-lg'
-												: 'inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-gray-600 rounded-r-lg'
+												? 'border-red-600 border-l-0 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border  rounded-r-lg'
+												: 'inline-flex items-center px-3 text-sm text-slate-400 bg-slate-300 border border-slate-300 rounded-r-lg'
 										}
 									>
 										{isPasswordVisible ? (
@@ -250,7 +250,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 								<div className='flex'>
 									<input
 										type='submit'
-										className='w-full py-2 mt-8 font-semibold text-white transition-colors border rounded active:bg-gray-500 hover:text-black hover:border-black hover:bg-white'
+										className='w-full py-2 mt-8 font-semibold text-white transition-colors rounded bg-slate-500 active:text-gray-300 active:bg-gray-500 hover:text-gray-200 hover:bg-slate-400'
 										value={valueButtonSubmit}
 									/>
 								</div>

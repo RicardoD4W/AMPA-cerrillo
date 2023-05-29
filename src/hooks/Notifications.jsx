@@ -64,10 +64,26 @@ const useCorrectChangeChildDataNotify = (childName) =>
 		}
 	)
 
+const useCorrectPostSuggestionsNotify = (title) =>
+	toast.success(
+		`La sugerencia "${title}", ha sido notificada correctamente al administrador`,
+		{
+			position: 'top-center',
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		}
+	)
+
 export {
 	useErrorNotify,
 	useCorrectLoginNotify,
 	useCorrectRegisterNotify,
 	useCorrectChangeUserDataNotify,
 	useCorrectChangeChildDataNotify,
+	useCorrectPostSuggestionsNotify,
 }

@@ -56,7 +56,6 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 			childClassroom,
 			childMode
 		)
-		console.log(peticion)
 
 		if (peticion.error) {
 			setChildName(name)
@@ -87,7 +86,7 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 	return (
 		<div className='m-3'>
 			<ToastContainer />
-			<div className='relative flex flex-wrap justify-center gap-5 p-2 text-gray-600 rounded w-96 sm:justify-normal bg-gradient-to-r from-gray-100 to-gray-300'>
+			<div className='relative flex flex-wrap justify-center gap-5 p-2 text-gray-600 rounded w-80 sm:justify-normal bg-gradient-to-r from-gray-100 to-gray-300'>
 				<div
 					className={`absolute right-0 mr-1 transition-colors cursor-pointer hover:text-blue-700 ${
 						isEditing && 'text-blue-400'
