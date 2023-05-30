@@ -116,7 +116,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										Nombre Completo
 									</label>
 									<div className='flex'>
-										<span className='inline-flex items-center px-3 text-sm border border-r-0 text-slate-700 bg-slate-300 border-slate-300 rounded-l-md'>
+										<span className='inline-flex items-center px-3 text-sm border border-r-0 md:bg-slate-400 text-slate-700 bg-slate-300 border-slate-300 rounded-l-md'>
 											<IconNombreCompleto />
 										</span>
 										<input
@@ -143,8 +143,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									<span
 										className={
 											isInvalid
-												? 'border-red-600 border-r-0 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border rounded-l-md'
-												: 'inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0 border-slate-300 rounded-l-md'
+												? 'md:bg-slate-400 border-red-600 border-r-0 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border rounded-l-md'
+												: 'md:bg-slate-400 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0 border-slate-300 rounded-l-md'
 										}
 									>
 										<IconEmail />
@@ -158,7 +158,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 										className={
 											isInvalid
 												? 'border-red-600 border-l-0 max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200  placeholder-slate-400 text-slate-600 '
-												: 'max-[640px]:placeholder:text-[12px] rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200 border-slate-200 placeholder-slate-500 text-slate-900 '
+												: 'max-[640px]:placeholder:text-[12px]  rounded-none rounded-r-lg  border   block flex-1 min-w-0 w-full text-sm  p-2.5  bg-slate-200 border-slate-200 placeholder-slate-500 text-slate-900 '
 										}
 										placeholder='nombre@gmail.com'
 									/>
@@ -176,8 +176,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									<span
 										className={
 											isInvalid
-												? ' border-red-600 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0  rounded-l-md'
-												: 'inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0 border-slate-300 rounded-l-md'
+												? 'md:bg-slate-400 border-red-600 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0  rounded-l-md'
+												: ' md:bg-slate-400 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-r-0 border-slate-300 rounded-l-md'
 										}
 									>
 										<IconPassword />
@@ -198,8 +198,8 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									<span
 										className={
 											isInvalid
-												? 'border-red-600 border-l-0 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border  rounded-r-lg'
-												: 'inline-flex items-center px-3 text-sm text-slate-400 bg-slate-300 border border-slate-300 rounded-r-lg'
+												? 'md:bg-slate-400 border-red-600 border-l-0 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border  rounded-r-lg'
+												: 'md:bg-slate-400 inline-flex items-center px-3 text-sm text-slate-700 bg-slate-300 border border-slate-300 rounded-r-lg'
 										}
 									>
 										{isPasswordVisible ? (

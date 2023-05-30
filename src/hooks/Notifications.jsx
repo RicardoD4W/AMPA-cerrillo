@@ -13,6 +13,30 @@ const useErrorNotify = (errorMsg) =>
 		theme: 'colored',
 	})
 
+const useCorrectAceptDenyNotify = (paid, user) => {
+	paid
+		? toast.success(`Usuario ${user} admitido con éxito`, {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'colored',
+		  })
+		: toast.success(`Usuario ${user} denegado con éxito`, {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'colored',
+		  })
+}
+
 const useCorrectLoginNotify = () =>
 	toast.success('El inicio de sesión se ha realizado con éxito', {
 		position: 'top-center',
@@ -86,4 +110,5 @@ export {
 	useCorrectChangeUserDataNotify,
 	useCorrectChangeChildDataNotify,
 	useCorrectPostSuggestionsNotify,
+	useCorrectAceptDenyNotify,
 }

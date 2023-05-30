@@ -13,6 +13,8 @@ import Header from './components/Header'
 import DatosPersonales from './components/DatosPersonales'
 import Sugerencias from './components/Sugerencias'
 import Suscripcion from './components/Suscripcion'
+import AdminisTrarPeticiones from './components/AdministrarPeticiones'
+import AdministrarNoticias from './components/AdministrarNoticias'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -50,6 +52,15 @@ const router = createBrowserRouter([
 		path: '/pagina-admin/:id',
 		element: <AdminPage />,
 	},
+	{
+		path: '/pagina-admin/:id/peticiones',
+		element: <AdminisTrarPeticiones />,
+	},
+	{
+		path: '/pagina-admin/:id/noticias',
+		element: <AdministrarNoticias />,
+	},
+
 	{
 		path: '/pagina-invitado',
 		element: <GuestPage />,

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useMainStore } from '../stores/mainContext'
+import { IconDownload } from './Icons'
 
 const Header = ({ usuario, admin, invitado }) => {
 	const [navbar, setNavbar] = useState(false)
@@ -161,14 +162,26 @@ const Header = ({ usuario, admin, invitado }) => {
 							}`}
 						>
 							<ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
+								<button className='flex items-center justify-center gap-2 px-3 py-1 font-semibold transition-colors bg-blue-200 rounded text-slate-700 hover:bg-blue-400 hover:text-white active:bg-blue-600 active:text-slate-400'>
+									<IconDownload /> Listado Padres
+								</button>
+
 								<li className='text-gray-600 hover:text-blue-600'>
-									<Link to='/registrarse'>Registrarse</Link>
+									<Link to={`/pagina-admin/${user.id}`}>Nuevos miembros</Link>
 								</li>
 								<li className='text-gray-600 hover:text-blue-600'>
-									<Link to='/iniciar-sesion'>Iniciar Sesión</Link>
+									<Link to={`/pagina-admin/${user.id}/peticiones`}>
+										Peticiones
+									</Link>
 								</li>
 								<li className='pb-5 text-gray-600 md:pb-0 hover:text-blue-600'>
-									<Link to='/pagina-principal'>Página principal</Link>
+									<Link to={`/pagina-admin/${user.id}/noticias`}>Noticias</Link>
+								</li>
+								<li
+									onClick={logout}
+									className='transition-colors pb-5 text-gray-600 underline decoration-transparent hover:decoration-[#FF0000] md:pb-0 hover:text-red-600'
+								>
+									<Link to='/pagina-principal'>Logout</Link>
 								</li>
 							</ul>
 						</div>
@@ -258,7 +271,7 @@ const Header = ({ usuario, admin, invitado }) => {
 								</li>
 								<li
 									onClick={logout}
-									className='pb-5 text-gray-600 underline decoration-transparent hover:decoration-[#FF0000] md:pb-0 hover:text-red-600'
+									className='transition-colors pb-5 text-gray-600 underline decoration-transparent hover:decoration-[#FF0000] md:pb-0 hover:text-red-600'
 								>
 									<Link to='/pagina-principal'>Logout</Link>
 								</li>
