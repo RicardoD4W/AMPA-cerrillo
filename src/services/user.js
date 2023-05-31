@@ -3,27 +3,30 @@ const VITE_BUSCAR_HIJOS_POR_ID = import.meta.env.VITE_BUSCAR_HIJOS_POR_ID
 const VITE_CAMBIAR_DATOS_HIJOS_POR_ID = import.meta.env.VITE_CAMBIAR_DATOS_HIJOS_POR_ID
 const VITE_ENVIAR_SUGERENCIA_DE_USUARIO = import.meta.env.VITE_ENVIAR_SUGERENCIA_DE_USUARIO
 
-const useChangeDataUser = (bearer, name, dni, phone, email, id) => {
+const useChangeDataUser = (bearer, name, dni, phone, email, id, photo, fileInput) => {
+
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer " + bearer);
 
-    var raw = JSON.stringify({
-        "name": name,
-        "dni": dni,
-        "phone": phone,
-        "email": email
-    });
+    var formdata = new FormData();
+
+    if (photo && fileInput) formdata.append("img", fileInput.files[0], photo);
+    formdata.append("name", name);
+    formdata.append("dni", dni);
+    formdata.append("phone", phone);
+    formdata.append("email", email);
 
     var requestOptions = {
         method: 'PATCH',
         headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: 'follow'
     };
 
+
     return fetch(VITE_PATCH_DATOS_USUARIO_POR_ID + id, requestOptions)
         .then(response => response.json())
+
 }
 
 const useSearchChildsById = (id, bearer, limit = 10, offset = 0,) => {

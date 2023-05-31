@@ -15,6 +15,8 @@ const UserCard = ({ userImage }) => {
 	const [mail, setMail] = useState(user.email)
 	const [Dni, setDni] = useState(user.dni)
 	const [tlfno, setTlfno] = useState(user.phone)
+	const [photo, setPhoto] = useState(userImage)
+	const [fileInput, setFileInput] = useState()
 
 	useEffect(() => {
 		!user.email &&
@@ -31,7 +33,9 @@ const UserCard = ({ userImage }) => {
 			Dni,
 			tlfno,
 			mail,
-			user.id
+			user.id,
+			photo,
+			fileInput
 		)
 		if (peticion.error) {
 			setName(user.name)
@@ -77,6 +81,10 @@ const UserCard = ({ userImage }) => {
 	const handleChangePhone = () => {
 		setTlfno(event.target.value)
 	}
+	const handleOnSetPhoto = () => {
+		setFileInput(event.target)
+		setPhoto(event.target.value)
+	}
 
 	return (
 		<div className='flex items-center justify-center w-full '>
@@ -105,13 +113,22 @@ const UserCard = ({ userImage }) => {
 				</div>
 
 				<figure>
-					<img
-						className='object-center object-cover rounded min-w-[100px] min-h-[133px] '
-						width={100}
-						height={100}
-						src={userImage}
-						alt={user.name}
-					/>
+					{isEditing ? (
+						<input
+							enctype='multipart/form-data'
+							accept='image/*'
+							onChange={handleOnSetPhoto}
+							type='file'
+						/>
+					) : (
+						<img
+							className='object-center object-cover rounded min-w-[100px] min-h-[133px] '
+							width={100}
+							height={100}
+							src={photo}
+							alt={user.name}
+						/>
+					)}
 				</figure>
 				<section className='flex flex-col justify-center gap-2'>
 					<p className='font-bold'>
