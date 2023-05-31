@@ -1,5 +1,6 @@
 const VITE_OBTENER_TODOS_USUARIOS = import.meta.env.VITE_OBTENER_TODOS_USUARIOS
 const VITE_SUSCRIPCCION = import.meta.env.VITE_SUSCRIPCCION
+const VITE_SUGGESTIONS = import.meta.env.VITE_SUGGESTIONS
 
 const useGetAllUsers = (bearer) => {
     var myHeaders = new Headers();
@@ -44,10 +45,27 @@ const useDenyUser = (token, idUser) => {
 
 }
 
+const useGetAllSuggestions = (token) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    return fetch(VITE_SUGGESTIONS, requestOptions)
+        .then(response => response.json())
+
+}
+
+
 
 
 export {
     useGetAllUsers,
     useAceptUser,
-    useDenyUser
+    useDenyUser,
+    useGetAllSuggestions
 }
