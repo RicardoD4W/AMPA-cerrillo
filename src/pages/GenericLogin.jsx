@@ -22,7 +22,6 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 		setTasasLogin,
 		setDataLogin,
 		setUser,
-		user,
 	} = useMainStore()
 	const navigate = useNavigate()
 

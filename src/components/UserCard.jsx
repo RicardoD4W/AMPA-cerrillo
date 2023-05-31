@@ -5,9 +5,10 @@ import { useIsArrayNotification } from '../hooks/useIsArrayNotification'
 import { useCorrectChangeUserDataNotify } from '../hooks/Notifications'
 import { useMainStore } from '../stores/mainContext'
 import { useNavigate } from 'react-router-dom'
+import { useLogin } from '../services/auth'
 
-const UserCard = ({ userImage }) => {
-	const { setUser, user } = useMainStore()
+const UserCard = () => {
+	const { setUser, user, passwordLogin, emailLogin } = useMainStore()
 	const navigate = useNavigate()
 
 	const [isEditing, setIsEditing] = useState(false)
@@ -15,7 +16,7 @@ const UserCard = ({ userImage }) => {
 	const [mail, setMail] = useState(user.email)
 	const [Dni, setDni] = useState(user.dni)
 	const [tlfno, setTlfno] = useState(user.phone)
-	const [photo, setPhoto] = useState(userImage)
+	const [photo, setPhoto] = useState(user.img)
 	const [fileInput, setFileInput] = useState()
 
 	useEffect(() => {
@@ -26,8 +27,8 @@ const UserCard = ({ userImage }) => {
 			navigate('/iniciar-sesion')
 	}, [user.email])
 
-	const handleOnChangeApplyUserData = async () => {
-		const peticion = await useChangeDataUser(
+	const handleOnChangeApplyUserData = () => {
+		const peticion = useChangeDataUser(
 			user.token,
 			name,
 			Dni,
@@ -36,7 +37,8 @@ const UserCard = ({ userImage }) => {
 			user.id,
 			photo,
 			fileInput
-		)
+		).then(console.log)
+
 		if (peticion.error) {
 			setName(user.name)
 			setMail(user.email)
@@ -49,6 +51,9 @@ const UserCard = ({ userImage }) => {
 			useCorrectChangeUserDataNotify()
 			setUser({ name, email: mail, dni: Dni, phone: tlfno })
 		}
+		useLogin(emailLogin, passwordLogin).then((res) => {
+			setPhoto(res.img)
+		})
 		setIsEditing(false)
 	}
 
@@ -114,12 +119,7 @@ const UserCard = ({ userImage }) => {
 
 				<figure>
 					{isEditing ? (
-						<input
-							enctype='multipart/form-data'
-							accept='image/*'
-							onChange={handleOnSetPhoto}
-							type='file'
-						/>
+						<input accept='image/*' onChange={handleOnSetPhoto} type='file' />
 					) : (
 						<img
 							className='object-center object-cover rounded min-w-[100px] min-h-[133px] '
