@@ -230,7 +230,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 												className='m-2 scale-125 accent-gray-500'
 												required
 												checked={userData}
-												onClick={() => setUserData(!userData)}
+												onChange={() => setUserData(!userData)}
 											/>
 											Acepto el uso completo de mis datos personales con fines
 											en la aplicación
@@ -241,7 +241,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 												type='checkbox'
 												required
 												checked={userTasas}
-												onClick={() => setUserTasas(!userTasas)}
+												onChange={() => setUserTasas(!userTasas)}
 											/>
 											He realizado el pago previo de las tasas
 										</label>

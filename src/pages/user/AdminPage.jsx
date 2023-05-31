@@ -102,7 +102,7 @@ const AdminPage = () => {
 							</Layout>
 						</section>
 						<section>
-							<article className='bg-slate-100/40'>
+							<article className='p-1 bg-slate-100/40'>
 								{filterUsersList.length > 0 && filterUsersList ? (
 									filterUsersList.map(({ email, name, paid, phone, id }) => (
 										<div

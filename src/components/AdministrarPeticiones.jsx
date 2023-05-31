@@ -15,6 +15,10 @@ const tabSelected =
 const tabNoSelected =
 	'inline-flex p-3 transition-colors border-b-2 border-transparent rounded-t-lg hover:text-slate-400 hover:border-slate-300 group'
 
+const iconSelected = 'w-5 h-5 mr-2 transition-colors '
+const iconNoSelected =
+	'w-5 h-5 mr-2 transition-colors group-hover:text-slate-400'
+
 const AdminisTrarPeticiones = () => {
 	const user = useMainStore((state) => state.user)
 	const navigate = useNavigate()
@@ -76,7 +80,9 @@ const AdminisTrarPeticiones = () => {
 										onClick={handleOnCLickTabAll}
 										className={selectedAll ? tabSelected : tabNoSelected}
 									>
-										<IconSuggestions />
+										<IconSuggestions
+											iconState={selectedAll ? iconSelected : iconNoSelected}
+										/>
 										Peticiones
 									</button>
 								</li>
@@ -85,7 +91,9 @@ const AdminisTrarPeticiones = () => {
 										onClick={handleOnCLickTabSave}
 										className={selectedSave ? tabSelected : tabNoSelected}
 									>
-										<IconSaveSuggestions />
+										<IconSaveSuggestions
+											iconState={selectedSave ? iconSelected : iconNoSelected}
+										/>
 										Archivadas
 									</button>
 								</li>

@@ -171,7 +171,7 @@ export const IconPlus = () => {
 	)
 }
 
-export const IconSuggestions = () => {
+export const IconSuggestions = ({ iconState }) => {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -179,7 +179,7 @@ export const IconSuggestions = () => {
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
-			className='w-5 h-5 mr-2 transition-colors group-hover:text-slate-400'
+			className={iconState}
 		>
 			<path
 				strokeLinecap='round'
@@ -190,7 +190,7 @@ export const IconSuggestions = () => {
 	)
 }
 
-export const IconSaveSuggestions = () => {
+export const IconSaveSuggestions = ({ iconState }) => {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -198,7 +198,7 @@ export const IconSaveSuggestions = () => {
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
-			className='w-5 h-5 mr-2 transition-colors group-hover:text-slate-400'
+			className={iconState}
 		>
 			<path
 				strokeLinecap='round'
