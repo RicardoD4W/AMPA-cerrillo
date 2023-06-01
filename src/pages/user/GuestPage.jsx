@@ -67,6 +67,7 @@ const GuestPage = () => {
 											title={title}
 											subtitle={description}
 											type={type}
+											fecha={createdAt._nanoseconds}
 										/>
 									)
 								}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './scroll.css'
 
 const Card = ({ title, subtitle, type, img, files, fecha }) => {
-	const [fechaPublicacion, setFechaPublicacion] = useState()
+	const [fechaPublicacion, setFechaPublicacion] = useState(fecha)
 
 	useEffect(() => {
 		setFechaPublicacion(new Date(fecha).toLocaleDateString())
