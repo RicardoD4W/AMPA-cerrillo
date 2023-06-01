@@ -1,4 +1,3 @@
-import { ToastContainer } from 'react-toastify'
 import Header from './Header'
 import Layout from './Layout'
 import StructureLayout from './StructureLayout'
@@ -71,7 +70,6 @@ const AdminisTrarPeticiones = () => {
 			<StructureLayout>
 				<Header admin />
 				<Layout>
-					<ToastContainer />
 					<div className='flex items-center justify-center w-full m-5'>
 						<div className='border-b border-gray-200 '>
 							<ul className='flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 '>
@@ -113,16 +111,28 @@ const AdminisTrarPeticiones = () => {
 				</Layout>
 
 				<Layout>
-					<div className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
-						{filterSuggestionList.map((sugg) => (
-							<article key={sugg.id}>
-								<SuggestionCard
-									title={sugg.title}
-									description={sugg.description}
-									time={sugg.createdAt._nanoseconds}
-								/>
-							</article>
-						))}
+					<div className='grid items-center grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
+						{filterSuggestionList && filterSuggestionList.length > 0 ? (
+							filterSuggestionList.map((sugg) => (
+								<article key={sugg.id}>
+									<SuggestionCard
+										title={sugg.title}
+										description={sugg.description}
+										time={sugg.createdAt._nanoseconds}
+									/>
+								</article>
+							))
+						) : (
+							<Bars
+								height='80'
+								width='80'
+								color='#4fa94d'
+								ariaLabel='bars-loading'
+								wrapperStyle={{}}
+								wrapperClass=''
+								visible={true}
+							/>
+						)}
 					</div>
 				</Layout>
 				<Footer />
