@@ -37,7 +37,9 @@ const UserCard = () => {
 			user.id,
 			photo,
 			fileInput
-		).then(console.log)
+		).then((res) => {
+			setPhoto(res.user.img)
+		})
 
 		if (peticion.error) {
 			setName(user.name)
@@ -51,9 +53,7 @@ const UserCard = () => {
 			useCorrectChangeUserDataNotify()
 			setUser({ name, email: mail, dni: Dni, phone: tlfno })
 		}
-		useLogin(emailLogin, passwordLogin).then((res) => {
-			setPhoto(res.img)
-		})
+
 		setIsEditing(false)
 	}
 

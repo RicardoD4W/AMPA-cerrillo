@@ -103,6 +103,18 @@ const useCorrectPostSuggestionsNotify = (title) =>
 		}
 	)
 
+const useCorrectPostPubli = () =>
+	toast.success('Publicación subida correctamente', {
+		position: 'top-center',
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		theme: 'colored',
+	})
+
 export {
 	useErrorNotify,
 	useCorrectLoginNotify,
@@ -111,4 +123,5 @@ export {
 	useCorrectChangeChildDataNotify,
 	useCorrectPostSuggestionsNotify,
 	useCorrectAceptDenyNotify,
+	useCorrectPostPubli,
 }

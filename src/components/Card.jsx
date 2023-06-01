@@ -9,7 +9,7 @@ const Card = ({ title, subtitle, type, img, files, fecha }) => {
 	}, [])
 
 	return (
-		<div className='max-w-[300px] min-w-[214px]  border rounded-lg shadow bg-slate-50 border-slate-300  overflow-hidden'>
+		<div className='max-w-[300px] min-w-[300px]  border rounded-lg shadow bg-slate-50 border-slate-300  overflow-hidden'>
 			<figure>
 				<img
 					className='rounded-t-lg object-cover w-full h-[150px] object-center'
@@ -25,7 +25,7 @@ const Card = ({ title, subtitle, type, img, files, fecha }) => {
 					</span>
 				</h5>
 
-				<p className=' border-slate-400  overflow-auto max-h-[100px] mb-2 text-sm font-normal text-slate-500 pr-2'>
+				<p className=' border-slate-400 min-h-[80px] overflow-auto max-h-[100px] mb-2 text-sm font-normal text-slate-500 pr-2'>
 					{subtitle}
 				</p>
 

@@ -33,6 +33,7 @@ const AdminPage = () => {
 	}, [])
 
 	const handleOnClickAcceptUser = (idUser) => () => {
+		setFiltro('')
 		useAceptUser(user.token, idUser).then((res) => {
 			if (res.error) {
 				useIsArrayNotification(res.message)
