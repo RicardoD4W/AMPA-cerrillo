@@ -8,6 +8,7 @@ import { useMainStore } from '../stores/mainContext'
 import { useNavigate } from 'react-router-dom'
 import { useGetAllSuggestions } from '../services/admin'
 import SuggestionCard from './SuggestionCard'
+import { Bars } from 'react-loader-spinner'
 
 const tabSelected =
 	'inline-flex p-3 transition-colors border-b-2 rounded-t-lg border-slate-900 text-slate-900  group'
@@ -111,7 +112,7 @@ const AdminisTrarPeticiones = () => {
 				</Layout>
 
 				<Layout>
-					<div className='grid items-center grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
+					<div className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
 						{filterSuggestionList && filterSuggestionList.length > 0 ? (
 							filterSuggestionList.map((sugg) => (
 								<article key={sugg.id}>
