@@ -47,15 +47,29 @@ const GuestPage = () => {
 					<div className='inline-flex flex-wrap items-center justify-center gap-5'>
 						{publicaciones ? (
 							publicaciones.map(
-								({ title, description, type, img, createdAt, id }) => (
-									<Card
-										key={id}
-										img={img[0]}
-										title={title}
-										subtitle={description}
-										type={type}
-									/>
-								)
+								({
+									title,
+									description,
+									type,
+									img,
+									createdAt,
+									id,
+									status,
+									files,
+								}) => {
+									if (!status) return
+									if (files.length > 0) return
+
+									return (
+										<Card
+											key={id}
+											img={img[0]}
+											title={title}
+											subtitle={description}
+											type={type}
+										/>
+									)
+								}
 							)
 						) : (
 							<Comment
