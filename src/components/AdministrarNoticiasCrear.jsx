@@ -39,10 +39,10 @@ const AdministrarNoticiasCrear = () => {
 		setPublishOut(event.target.value)
 	}
 	const handleChangePhoto = () => {
-		setPhoto(event.target.value)
+		setPhoto(event.target)
 	}
 	const handleChangeFile = () => {
-		setFiles(event.target.value)
+		setFiles(event.target)
 	}
 
 	const handleCancelAction = () => {
@@ -53,6 +53,8 @@ const AdministrarNoticiasCrear = () => {
 		setTipo('')
 		setPublishOn('')
 		setPublishOut('')
+		setPhoto('')
+		setFiles('')
 	}
 
 	const handleClickPostPubli = () => {
@@ -63,7 +65,9 @@ const AdministrarNoticiasCrear = () => {
 			audiencia.toUpperCase(),
 			tipo.toUpperCase(),
 			new Date(publishOn),
-			publishOut
+			publishOut,
+			photo,
+			files
 		).then((res) => {
 			if (res.error) useIsArrayNotification(res.message)
 			else {
@@ -192,25 +196,35 @@ const AdministrarNoticiasCrear = () => {
 									</label>
 									<label>
 										<span>Foto: </span>
-										<input
-											value={photo}
-											onChange={setPhoto}
-											type='file'
-											accept='image/*'
-											className='w-[9.5rem]'
-										/>
-										{/* TODO estilar input */}
+										<div className='relative flex'>
+											<span className='px-4 text-2xl font-bold text-white rounded-s-xl bg-slate-400'>
+												Añadir
+											</span>
+											<div className='w-[85px] bg-slate-300 p-1 rounded-e-xl' />
+											<input
+												onChange={handleChangePhoto}
+												type='file'
+												accept='image/*'
+												className='absolute top-0 bottom-0 w-full h-full right-2 file:opacity-0 '
+												multiple
+											/>
+										</div>
 									</label>
 									<label>
 										<span>Pdfs: </span>
-										<input
-											value={files}
-											onChange={setFiles}
-											type='file'
-											accept='application/pdf'
-											className='w-[7.5rem]'
-											multiple
-										/>
+										<div className='relative flex'>
+											<span className='px-4 text-2xl font-bold text-white rounded-s-xl bg-slate-400'>
+												Añadir
+											</span>
+											<div className='w-[85px] bg-slate-300 p-1 rounded-e-xl' />
+											<input
+												onChange={handleChangeFile}
+												type='file'
+												accept='application/pdf'
+												className='absolute top-0 bottom-0 w-full h-full right-2 file:opacity-0 '
+												multiple
+											/>
+										</div>
 									</label>
 									<label>
 										<span>Fecha de publicación: </span>

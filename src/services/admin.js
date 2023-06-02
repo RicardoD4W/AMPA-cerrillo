@@ -77,35 +77,31 @@ const useGetAllPubli = (token) => {
         .then(response => response.json())
 }
 
-const usePostOnePubli = (token, titulo, descripccion, audiencia, tipo, publishOn, publishOut) => {
-    console.log("🚀 ", publishOn)
+const usePostOnePubli = (token, titulo, descripccion, audiencia, tipo, publishOn, publishOut, photo, files) => {
+
+
 
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer " + token);
 
-    var raw;
-
-    publishOut ? raw = JSON.stringify({
-        "title": titulo,
-        "description": descripccion,
-        "audience": audiencia,
-        "type": tipo,
-        "publishOn": publishOn,
-        "publishOut": publishOut
-    }) : raw = JSON.stringify({
-        "title": titulo,
-        "description": descripccion,
-        "audience": audiencia,
-        "type": tipo,
-        "publishOn": publishOn,
-
-    })
+    var formdata = new FormData();
+    photo && formdata.append("img", photo.files[0], photo.value);
+    if (files) {
+        for (let i = 0; i < files.files.length; i++) {
+            formdata.append("files", files.files[i], files.value);
+        }
+    }
+    formdata.append("title", titulo);
+    formdata.append("description", descripccion);
+    formdata.append("audience", audiencia);
+    formdata.append("type", tipo);
+    formdata.append("publishOn", publishOn);
+    formdata.append("publishOut", publishOut);
 
     var requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: 'follow'
     };
 

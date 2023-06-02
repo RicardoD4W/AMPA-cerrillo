@@ -45,8 +45,8 @@ const Card = ({ title, subtitle, type, img, files, fecha }) => {
 						</span>
 					)}
 					{files &&
-						files.map(() => (
-							<span>
+						files.map((value) => (
+							<span key={value}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									fill='none'
