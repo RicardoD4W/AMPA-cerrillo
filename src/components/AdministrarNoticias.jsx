@@ -55,58 +55,59 @@ const AdministrarNoticias = () => {
 	}
 
 	return (
-		<StructureLayout>
-			<Header admin />
-			<Layout>
-				<div className='flex items-center justify-center w-full m-5'>
-					<div className='border-b border-gray-200 '>
-						<ul className='flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 '>
-							<li className='px-2'>
-								<button
-									onClick={handleOnCLickTabAll}
-									className={selectedAll ? tabSelected : tabNoSelected}
-								>
-									<IconAdminNoticeAll
-										iconState={selectedAll ? iconSelected : iconNoSelected}
-									/>
-									Noticias
-								</button>
-							</li>
-							<li className='px-2'>
-								<button
-									onClick={handleOnCLickTabSave}
-									className={selectedSave ? tabSelected : tabNoSelected}
-								>
-									<IconAdminNoticeCreate
-										iconState={selectedSave ? iconSelected : iconNoSelected}
-									/>
-									Crear
-								</button>
-							</li>
-							<li className='px-2'>
-								<button
-									onClick={handleOnCLickTabDelete}
-									className={selectedDelete ? tabSelected : tabNoSelected}
-								>
-									<IconAdminNoticeDelete
-										iconState={selectedDelete ? iconSelected : iconNoSelected}
-									/>
-									Eliminar
-								</button>
-							</li>
-						</ul>
+		<>
+			<StructureLayout>
+				<Header admin />
+				<Layout>
+					<div className='flex items-center justify-center w-full m-5'>
+						<div className='border-b border-gray-200 '>
+							<ul className='flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 '>
+								<li className='px-2'>
+									<button
+										onClick={handleOnCLickTabAll}
+										className={selectedAll ? tabSelected : tabNoSelected}
+									>
+										<IconAdminNoticeAll
+											iconState={selectedAll ? iconSelected : iconNoSelected}
+										/>
+										Noticias
+									</button>
+								</li>
+								<li className='px-2'>
+									<button
+										onClick={handleOnCLickTabSave}
+										className={selectedSave ? tabSelected : tabNoSelected}
+									>
+										<IconAdminNoticeCreate
+											iconState={selectedSave ? iconSelected : iconNoSelected}
+										/>
+										Crear
+									</button>
+								</li>
+								<li className='px-2'>
+									<button
+										onClick={handleOnCLickTabDelete}
+										className={selectedDelete ? tabSelected : tabNoSelected}
+									>
+										<IconAdminNoticeDelete
+											iconState={selectedDelete ? iconSelected : iconNoSelected}
+										/>
+										Eliminar
+									</button>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-			</Layout>
+				</Layout>
 
-			<Layout>
-				{selectedAll && <AdministrarNoticiasAll />}
-				{selectedSave && <AdministrarNoticiasCrear />}
-				{selectedDelete && <AdministrarNoticiasEliminar />}
-			</Layout>
-
+				<Layout>
+					{selectedAll && <AdministrarNoticiasAll />}
+					{selectedSave && <AdministrarNoticiasCrear />}
+					{selectedDelete && <AdministrarNoticiasEliminar />}
+				</Layout>
+			</StructureLayout>
 			<Footer />
-		</StructureLayout>
+		</>
 	)
 }
 

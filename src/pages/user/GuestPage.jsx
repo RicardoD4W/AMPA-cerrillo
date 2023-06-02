@@ -86,8 +86,8 @@ const GuestPage = () => {
 						)}
 					</div>
 				</Layout>
-				<Footer />
 			</StructureLayout>
+			<Footer />
 		</>
 	)
 }

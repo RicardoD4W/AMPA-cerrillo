@@ -62,9 +62,8 @@ const DatosPersonales = () => {
 						/>
 					)}
 				</div>
-
-				<Footer />
 			</StructureLayout>
+			<Footer />
 		</>
 	)
 }

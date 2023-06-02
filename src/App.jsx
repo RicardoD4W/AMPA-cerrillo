@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useMainStore } from './stores/mainContext'
 import { useEffect } from 'react'
 import MainButton from './components/MainButton'
+import Footer from './components/Footer'
 
 function App() {
 	const { setGuest, user } = useMainStore()
@@ -47,6 +48,7 @@ function App() {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</>
 	)
 }

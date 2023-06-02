@@ -43,25 +43,23 @@ const useSearchChildsById = (id, bearer, limit = 10, offset = 0,) => {
         .then(response => response.json())
 }
 
-const useChangeDataChild = (childId, bearer, childName, childCourse, childClassrom, childMode) => {
+const useChangeDataChild = (childId, bearer, childName, childCourse, childClassrom, childMode, photo, fileInput) => {
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer " + bearer);
 
-    var raw = JSON.stringify({
-        "name": childName,
-        "course": childCourse,
-        "classroom": childClassrom,
-        "mode": childMode
-    });
+    var formdata = new FormData();
+    if (photo && fileInput) formdata.append("img", fileInput.files[0], photo);
+    formdata.append("name", childName);
+    formdata.append("course", childCourse);
+    formdata.append("classroom", childClassrom);
+    formdata.append("mode", childMode);
 
     var requestOptions = {
         method: 'PATCH',
         headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: 'follow'
     };
-
     return fetch(VITE_CAMBIAR_DATOS_HIJOS_POR_ID + childId, requestOptions)
         .then(response => response.json())
 

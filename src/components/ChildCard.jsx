@@ -3,10 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import { useChangeDataChild } from '../services/user'
 import { useMainStore } from '../stores/mainContext'
 import { useIsArrayNotification } from '../hooks/useIsArrayNotification'
-import {
-	useCorrectChangeChildDataNotify,
-	useCorrectChangeUserDataNotify,
-} from '../hooks/Notifications'
+import { useCorrectChangeChildDataNotify } from '../hooks/Notifications'
 
 const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 	const { user } = useMainStore()
@@ -17,6 +14,7 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 	const [childCourse, setChildCourse] = useState(course)
 	const [childMode, setChildMode] = useState(mode)
 	const [childClassroom, setChildClassroom] = useState(classroom)
+	const [fileInput, setFileInput] = useState()
 
 	const handleChangeChildName = () => {
 		setChildName(event.target.value)
@@ -29,6 +27,11 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 	}
 	const handleChangeChildClassroom = () => {
 		setChildClassroom(event.target.value)
+	}
+
+	const handleOnSetPhoto = () => {
+		setFileInput(event.target)
+		setChildImg(event.target.value)
 	}
 
 	const handleClickEditButton = () => {
@@ -47,33 +50,35 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 		setIsEditing(false)
 	}
 
-	const handleOnChangeApplyChildData = async () => {
-		const peticion = await useChangeDataChild(
+	const handleOnChangeApplyChildData = () => {
+		const peticion = useChangeDataChild(
 			id,
 			user.token,
 			childName,
 			childCourse,
 			childClassroom,
-			childMode
-		)
-
-		if (peticion.error) {
-			setChildName(name)
-			setChildCourse(course)
-			setChildMode(mode)
-			setChildClassroom(classroom)
+			childMode,
+			childImg,
+			fileInput
+		).then((res) => {
+			if (res.error) {
+				setChildName(name)
+				setChildCourse(course)
+				setChildMode(mode)
+				setChildClassroom(classroom)
+				setIsEditing(false)
+				useIsArrayNotification(res.message)
+			} else {
+				useCorrectChangeChildDataNotify(res.name)
+				setChildName(peticion.name)
+				setChildCourse(peticion.course)
+				setChildMode(peticion.mode)
+				setChildClassroom(peticion.classroom)
+				setChildImg(peticion.img)
+				setIsEditing(false)
+			}
 			setIsEditing(false)
-			useIsArrayNotification(peticion.message)
-		}
-		if (peticion.id) {
-			useCorrectChangeChildDataNotify(peticion.name)
-			setChildName(peticion.name)
-			setChildCourse(peticion.course)
-			setChildMode(peticion.mode)
-			setChildClassroom(peticion.classroom)
-			setIsEditing(false)
-		}
-		setIsEditing(false)
+		})
 	}
 
 	useEffect(() => {
@@ -110,13 +115,17 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 				</div>
 
 				<figure>
-					<img
-						className='object-center object-cover rounded min-w-[100px] min-h-[133px] '
-						width={100}
-						height={100}
-						src={childImg}
-						alt={name}
-					/>
+					{isEditing ? (
+						<input accept='image/*' onChange={handleOnSetPhoto} type='file' />
+					) : (
+						<img
+							className='object-center object-cover rounded min-w-[100px] min-h-[133px] '
+							width={100}
+							height={100}
+							src={childImg}
+							alt={name}
+						/>
+					)}
 				</figure>
 				<section className='flex flex-col justify-center gap-2'>
 					<p className='font-bold'>

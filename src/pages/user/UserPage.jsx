@@ -205,8 +205,8 @@ const UserPage = () => {
 						</div>
 					</div>
 				</Layout>
-				<Footer />
 			</StructureLayout>
+			<Footer />
 		</>
 	)
 }

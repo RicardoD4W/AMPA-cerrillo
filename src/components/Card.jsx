@@ -32,14 +32,14 @@ const Card = ({ title, subtitle, type, img, files, fecha }) => {
 				<section className='flex flex-wrap '>
 					{type === 'EXTRAESCOLARES' && (
 						<span
-							className={` text-xs font-medium mr-2 px-2.5 py-[2px] rounded bg-purple-700/80 text-purple-300 `}
+							className={`flex items-center text-xs font-medium mr-2 px-2.5 py-[2px] rounded bg-purple-700/80 text-purple-300 `}
 						>
 							{type}
 						</span>
 					)}
 					{type === 'ESCOLARES' && (
 						<span
-							className={` text-xs font-medium mr-2 px-2.5 py-[2px] rounded bg-blue-700/80 text-blue-300`}
+							className={`flex items-center text-xs font-medium mr-2 px-2.5 py-[2px] rounded bg-blue-700/80 text-blue-300`}
 						>
 							{type}
 						</span>

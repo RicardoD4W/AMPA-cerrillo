@@ -136,8 +136,8 @@ const AdminisTrarPeticiones = () => {
 						)}
 					</div>
 				</Layout>
-				<Footer />
 			</StructureLayout>
+			<Footer />
 		</>
 	)
 }

@@ -13,6 +13,7 @@ import {
 	IconPasswordInvisible,
 	IconPasswordVisible,
 } from '../components/Icons'
+import Footer from '../components/Footer'
 
 export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 	const {
@@ -258,6 +259,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 					</form>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	)
 }

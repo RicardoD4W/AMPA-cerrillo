@@ -216,8 +216,8 @@ const AdminPage = () => {
 						</section>
 					</div>
 				</Layout>
-				<Footer />
 			</StructureLayout>
+			<Footer />
 		</>
 	)
 }

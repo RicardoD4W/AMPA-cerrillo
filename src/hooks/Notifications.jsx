@@ -115,6 +115,18 @@ const useCorrectPostPubli = () =>
 		theme: 'colored',
 	})
 
+const useCorrectDeletePubli = () =>
+	toast.success('Publicación eliminada correctamente', {
+		position: 'top-center',
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		theme: 'colored',
+	})
+
 export {
 	useErrorNotify,
 	useCorrectLoginNotify,
@@ -124,4 +136,5 @@ export {
 	useCorrectPostSuggestionsNotify,
 	useCorrectAceptDenyNotify,
 	useCorrectPostPubli,
+	useCorrectDeletePubli,
 }

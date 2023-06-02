@@ -138,6 +138,20 @@ const useGetCSVStudents = (token) => {
 }
 
 
+const useDeletePubliById = (token, idPubli) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    return fetch(VITE_POST_ADMIN_PUBLI + idPubli, requestOptions)
+        .then(response => response.json())
+}
+
 
 export {
     useGetAllUsers,
@@ -147,5 +161,6 @@ export {
     useGetAllPubli,
     usePostOnePubli,
     useGetCSVStudents,
-    useGetCSVUser
+    useGetCSVUser,
+    useDeletePubliById
 }

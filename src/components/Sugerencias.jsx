@@ -87,9 +87,8 @@ const Sugerencias = () => {
 							</section>
 						</div>
 					</Layout>
-
-					<Footer />
 				</StructureLayout>
+				<Footer />
 			</>
 		</>
 	)
