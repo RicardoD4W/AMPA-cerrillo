@@ -10,6 +10,7 @@ import { useSearchChildsById } from '../services/user'
 import ChildCard from './ChildCard'
 import { BallTriangle } from 'react-loader-spinner'
 import { useLogin } from '../services/auth'
+import { ToastContainer } from 'react-toastify'
 
 const DatosPersonales = () => {
 	const navigate = useNavigate()
@@ -31,6 +32,7 @@ const DatosPersonales = () => {
 	return (
 		<>
 			<StructureLayout>
+				<ToastContainer />
 				<Header usuario />
 				<Layout>
 					<UserCard />

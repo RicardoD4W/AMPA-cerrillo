@@ -112,29 +112,32 @@ const AdminisTrarPeticiones = () => {
 				</Layout>
 
 				<Layout>
-					<div className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
-						{filterSuggestionList && filterSuggestionList.length > 0 ? (
-							filterSuggestionList.map((sugg) => (
-								<article key={sugg.id}>
-									<SuggestionCard
-										title={sugg.title}
-										description={sugg.description}
-										time={sugg.createdAt._nanoseconds}
-									/>
-								</article>
-							))
-						) : (
-							<Bars
-								height='80'
-								width='80'
-								color='#4fa94d'
-								ariaLabel='bars-loading'
-								wrapperStyle={{}}
-								wrapperClass=''
-								visible={true}
-							/>
-						)}
-					</div>
+					{selectedAll && (
+						<div className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
+							{filterSuggestionList && filterSuggestionList.length > 0 ? (
+								filterSuggestionList.map((sugg) => (
+									<article key={sugg.id}>
+										<SuggestionCard
+											title={sugg.title}
+											description={sugg.description}
+											time={sugg.createdAt._nanoseconds}
+										/>
+									</article>
+								))
+							) : (
+								<Bars
+									height='80'
+									width='80'
+									color='#4fa94d'
+									ariaLabel='bars-loading'
+									wrapperStyle={{}}
+									wrapperClass=''
+									visible={true}
+								/>
+							)}
+						</div>
+					)}
+					{selectedSave && 'Work in progress'}
 				</Layout>
 			</StructureLayout>
 			<Footer />

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useChangeDataUser } from '../services/user'
-import { ToastContainer } from 'react-toastify'
 import { useIsArrayNotification } from '../hooks/useIsArrayNotification'
 import { useCorrectChangeUserDataNotify } from '../hooks/Notifications'
 import { useMainStore } from '../stores/mainContext'
@@ -28,7 +27,7 @@ const UserCard = () => {
 	}, [user.email])
 
 	const handleOnChangeApplyUserData = () => {
-		const peticion = useChangeDataUser(
+		useChangeDataUser(
 			user.token,
 			name,
 			Dni,
@@ -38,21 +37,26 @@ const UserCard = () => {
 			photo,
 			fileInput
 		).then((res) => {
-			setPhoto(res.user.img)
+			if (res.error) {
+				setName(user.name)
+				setMail(user.email)
+				setDni(user.dni)
+				setTlfno(user.phone)
+				setIsEditing(false)
+				useIsArrayNotification(res.message)
+			}
+			if (res.statusCode == 200) {
+				useCorrectChangeUserDataNotify()
+				setUser({
+					name,
+					email: mail,
+					dni: Dni,
+					phone: tlfno,
+					img: res.user.img,
+				})
+				setPhoto(res.user.img)
+			}
 		})
-
-		if (peticion.error) {
-			setName(user.name)
-			setMail(user.email)
-			setDni(user.dni)
-			setTlfno(user.phone)
-			setIsEditing(false)
-			useIsArrayNotification(peticion.message)
-		}
-		if (peticion.statusCode == 200) {
-			useCorrectChangeUserDataNotify()
-			setUser({ name, email: mail, dni: Dni, phone: tlfno })
-		}
 
 		setIsEditing(false)
 	}
@@ -93,7 +97,6 @@ const UserCard = () => {
 
 	return (
 		<div className='flex items-center justify-center w-full '>
-			<ToastContainer />
 			<div className='relative flex flex-wrap justify-center gap-5 p-2 text-gray-600 rounded sm:justify-normal bg-gradient-to-r from-gray-100 to-gray-300 w-[480px]'>
 				<div
 					className={`absolute right-0 mr-1 transition-colors cursor-pointer hover:text-blue-700 ${

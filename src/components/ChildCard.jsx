@@ -51,7 +51,7 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 	}
 
 	const handleOnChangeApplyChildData = () => {
-		const peticion = useChangeDataChild(
+		useChangeDataChild(
 			id,
 			user.token,
 			childName,
@@ -70,11 +70,11 @@ const ChildCard = ({ name, course, mode, classroom, img, id }) => {
 				useIsArrayNotification(res.message)
 			} else {
 				useCorrectChangeChildDataNotify(res.name)
-				setChildName(peticion.name)
-				setChildCourse(peticion.course)
-				setChildMode(peticion.mode)
-				setChildClassroom(peticion.classroom)
-				setChildImg(peticion.img)
+				setChildName(res.name)
+				setChildCourse(res.course)
+				setChildMode(res.mode)
+				setChildClassroom(res.classroom)
+				setChildImg(res.img)
 				setIsEditing(false)
 			}
 			setIsEditing(false)

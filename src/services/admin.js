@@ -78,6 +78,8 @@ const useGetAllPubli = (token) => {
 }
 
 const usePostOnePubli = (token, titulo, descripccion, audiencia, tipo, publishOn, publishOut) => {
+    console.log("🚀 ", publishOn)
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer " + token);

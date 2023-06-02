@@ -17,6 +17,8 @@ const AdministrarNoticiasCrear = () => {
 	const [tipo, setTipo] = useState('')
 	const [publishOn, setPublishOn] = useState('')
 	const [publishOut, setPublishOut] = useState('')
+	const [photo, setPhoto] = useState('')
+	const [files, setFiles] = useState('')
 
 	const handleChangeTitulo = () => {
 		setTitulo(event.target.value)
@@ -35,6 +37,12 @@ const AdministrarNoticiasCrear = () => {
 	}
 	const handleChangePublishOut = () => {
 		setPublishOut(event.target.value)
+	}
+	const handleChangePhoto = () => {
+		setPhoto(event.target.value)
+	}
+	const handleChangeFile = () => {
+		setFiles(event.target.value)
 	}
 
 	const handleCancelAction = () => {
@@ -67,9 +75,9 @@ const AdministrarNoticiasCrear = () => {
 		})
 	}
 
-	const handleFormatMinDate = () => {
+	const handleFormatMinDate = (day = 0) => {
 		let today = new Date()
-		let dd = today.getDate() + 1
+		let dd = today.getDate() + day
 		let mm = today.getMonth() + 1
 		let yyyy = today.getFullYear()
 
@@ -183,10 +191,33 @@ const AdministrarNoticiasCrear = () => {
 										</div>
 									</label>
 									<label>
+										<span>Foto: </span>
+										<input
+											value={photo}
+											onChange={setPhoto}
+											type='file'
+											accept='image/*'
+											className='w-[9.5rem]'
+										/>
+										{/* TODO estilar input */}
+									</label>
+									<label>
+										<span>Pdfs: </span>
+										<input
+											value={files}
+											onChange={setFiles}
+											type='file'
+											accept='application/pdf'
+											className='w-[7.5rem]'
+											multiple
+										/>
+									</label>
+									<label>
 										<span>Fecha de publicación: </span>
 										<input
 											className='border rounded border-slate-400 placeholder:text-center'
 											type='date'
+											min={handleFormatMinDate()}
 											value={publishOn}
 											onChange={handleChangePublishOn}
 											placeholder='Título de la publicación'
@@ -197,7 +228,7 @@ const AdministrarNoticiasCrear = () => {
 										<input
 											className='border rounded border-slate-400 placeholder:text-center'
 											type='date'
-											min={handleFormatMinDate()}
+											min={handleFormatMinDate(1)}
 											value={publishOut}
 											onChange={handleChangePublishOut}
 											placeholder='Título de la publicación'
