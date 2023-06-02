@@ -62,6 +62,7 @@ const GuestPage = () => {
 
 									return (
 										<Card
+											role='guest'
 											key={id}
 											img={img[0]}
 											title={title}

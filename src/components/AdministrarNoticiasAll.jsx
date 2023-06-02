@@ -62,6 +62,9 @@ const AdministrarNoticiasAll = () => {
 								status && (
 									<Card
 										key={id}
+										id={id}
+										userId={user.id}
+										role='admin'
 										img={img[0]}
 										title={title}
 										subtitle={description}

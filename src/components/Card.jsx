@@ -1,15 +1,39 @@
 import { useEffect, useState } from 'react'
 import './scroll.css'
+import { useNavigate } from 'react-router-dom'
 
-const Card = ({ title, subtitle, type, img, files, fecha }) => {
+const Card = ({
+	id,
+	userId,
+	role,
+	title,
+	subtitle,
+	type,
+	img,
+	files,
+	fecha,
+}) => {
 	const [fechaPublicacion, setFechaPublicacion] = useState(fecha)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		setFechaPublicacion(new Date(fecha).toLocaleDateString())
 	}, [])
 
+	const handleRedirectCardDetail = () => {
+		if (role == 'user') {
+			navigate(`/pagina-usuario/${userId}/${id}`)
+		}
+		if (role == 'admin') {
+			navigate(`/pagina-admin/${userId}/${id}`)
+		}
+	}
+
 	return (
-		<div className='max-w-[300px] min-w-[300px]  border rounded-lg shadow bg-slate-50 border-slate-300  overflow-hidden'>
+		<div
+			onClick={handleRedirectCardDetail}
+			className='hover:scale-105 transition-transform cursor-pointer max-w-[300px] min-w-[300px]  border rounded-lg shadow bg-slate-50 border-slate-300  overflow-hidden'
+		>
 			<figure>
 				<img
 					className='rounded-t-lg object-cover w-full h-[150px] object-center'

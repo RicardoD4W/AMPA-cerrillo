@@ -15,6 +15,7 @@ import Sugerencias from './components/Sugerencias'
 import Suscripcion from './components/Suscripcion'
 import AdminisTrarPeticiones from './components/AdministrarPeticiones'
 import AdministrarNoticias from './components/AdministrarNoticias'
+import CardDetail from './components/CardDetail'
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
 	{
 		path: '/pagina-invitado',
 		element: <GuestPage />,
+	},
+	{
+		path: '/:role/:id/:idPublicacion',
+		element: <CardDetail />,
 	},
 	{
 		path: '/*',

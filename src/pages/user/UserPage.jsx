@@ -181,6 +181,9 @@ const UserPage = () => {
 											status && (
 												<Card
 													key={id}
+													id={id}
+													role='user'
+													userId={user.id}
 													img={img[0]}
 													title={title}
 													subtitle={description}
