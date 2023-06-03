@@ -229,6 +229,7 @@ const AdministrarNoticiasCrear = () => {
 									<label>
 										<span>Fecha de publicación: </span>
 										<input
+											required
 											className='border rounded border-slate-400 placeholder:text-center'
 											type='date'
 											min={handleFormatMinDate()}
@@ -240,6 +241,7 @@ const AdministrarNoticiasCrear = () => {
 									<label>
 										<span>Fecha para borrarse: </span>
 										<input
+											required
 											className='border rounded border-slate-400 placeholder:text-center'
 											type='date'
 											min={handleFormatMinDate(1)}
