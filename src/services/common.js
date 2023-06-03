@@ -1,5 +1,6 @@
 const COMMON_PUBLI_ENDPOINT = import.meta.env.VITE_PUBLICACIONES_COMUNES
 const USUARIOS_PUBLI_ENDPOINT = import.meta.env.VITE_PUBLICACIONES_USUARIOS
+const VITE_GET_ONE_PUBLI = import.meta.env.VITE_GET_ONE_PUBLI
 
 const usePublicaciones = () => {
     var requestOptions = {
@@ -26,4 +27,18 @@ const usePublicacionesUser = (bearer) => {
 
 }
 
-export { usePublicaciones, usePublicacionesUser }
+const useGetOnePubli = (token, idPubli) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    return fetch(VITE_GET_ONE_PUBLI + idPubli, requestOptions)
+        .then(response => response.json())
+}
+
+export { usePublicaciones, usePublicacionesUser, useGetOnePubli }
