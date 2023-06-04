@@ -58,6 +58,7 @@ const AdministrarNoticiasEliminar = () => {
 					setPublicacionesFiltradas(res.Adverts)
 				})
 				useCorrectDeletePubli()
+				setFiltro('')
 			}
 		})
 	}
