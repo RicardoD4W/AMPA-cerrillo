@@ -35,7 +35,7 @@ const BadgeCard = ({
 							{img && (
 								<img className='object-cover w-10' src={img} alt={title} />
 							)}
-							<h3 className='mt-0.5 text-lg font-medium text-slate-800 '>
+							<h3 className='mt-0.5 text-lg font-medium text-slate-800 w-[30rem] overflow-auto '>
 								{title}
 							</h3>
 							{files.length > 0 && (
