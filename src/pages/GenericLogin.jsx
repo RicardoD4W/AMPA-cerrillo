@@ -170,7 +170,7 @@ export function GenericLogin({ valueButtonSubmit = 'Registrarse' }) {
 									htmlFor='website'
 									className='block mb-2 text-sm font-medium text-white'
 								>
-									Password
+									Contraseña
 								</label>
 								<div className='flex'>
 									<span
