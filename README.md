@@ -7,6 +7,11 @@ También podrá ver y modificar su perfil y el de sus hijos.
 Dejar sugerencias y muchas más cosas en un futuro.
 
 
+## REQUISITOS
+
+Tener instalado node
+
+
 ## INSTALACIÓN
 
 ```bash
