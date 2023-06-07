@@ -9,9 +9,10 @@ Dejar sugerencias y muchas más cosas en un futuro.
 
 ## INSTALACIÓN
 
+```bash
 npm i
 npm run dev
-
+```
 
 ## Características
 
