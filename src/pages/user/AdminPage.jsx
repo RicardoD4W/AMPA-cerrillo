@@ -110,7 +110,7 @@ const AdminPage = () => {
 											key={id}
 											className='flex flex-wrap items-center m-6 border-b-2 border-slate-300'
 										>
-											<article className='mr-3 md:min-w-[270px] md:max-w-[270px]  '>
+											<article className='mr-3 md:min-w-[200px] md:max-w-[270px]  '>
 												<p className='flex text-sm'>
 													Nombre:{' '}
 													<span
