@@ -44,17 +44,16 @@ const UserCard = () => {
 				setTlfno(user.phone)
 				setIsEditing(false)
 				useIsArrayNotification(res.message)
-			}
-			if (res.statusCode == 200) {
+			} else {
 				useCorrectChangeUserDataNotify()
 				setUser({
-					name,
-					email: mail,
-					dni: Dni,
-					phone: tlfno,
-					img: res.user.img,
+					name: res.name,
+					email: res.email,
+					dni: res.dni,
+					phone: res.phone,
+					img: res.img,
 				})
-				setPhoto(res.user.img)
+				setPhoto(res.img)
 			}
 		})
 

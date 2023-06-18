@@ -164,7 +164,7 @@ const UserPage = () => {
 						</section>
 
 						<div className='inline-flex flex-wrap items-center justify-center gap-5'>
-							{publicacionesFiltradas.length > 0 ? (
+							{publicacionesFiltradas && publicacionesFiltradas.length > 0 ? (
 								publicacionesFiltradas
 									// .slice(offset, offset + 4)
 									.map(

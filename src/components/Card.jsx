@@ -41,7 +41,7 @@ const Card = ({
 					alt={title}
 				/>
 			</figure>
-			<div className='p-3 max-h-[205px]  '>
+			<div className='p-3 max-h-[260px]  '>
 				<h5 className='mb-2 overflow-auto text-lg font-bold tracking-tight text-slate-800'>
 					{title}
 					<span className='float-right mr-1 text-sm italic font-normal'>
