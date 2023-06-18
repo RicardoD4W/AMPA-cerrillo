@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 import { GenericLogin } from './pages/GenericLogin'
@@ -17,7 +17,7 @@ import AdminisTrarPeticiones from './components/AdministrarPeticiones'
 import AdministrarNoticias from './components/AdministrarNoticias'
 import CardDetail from './components/CardDetail'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
 	{ path: '/', element: <App /> },
 	{
 		path: '/iniciar-sesion',
