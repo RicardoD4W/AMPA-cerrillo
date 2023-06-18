@@ -103,14 +103,14 @@ const AdminPage = () => {
 							</Layout>
 						</section>
 						<section>
-							<article className='p-1 bg-slate-100/40'>
+							<article className='p-1 bg-slate-100/40 '>
 								{filterUsersList.length > 0 && filterUsersList ? (
 									filterUsersList.map(({ email, name, paid, phone, id }) => (
 										<div
 											key={id}
-											className='flex flex-wrap items-center m-6 border-b-2 border-slate-300'
+											className='flex flex-wrap items-center justify-between m-6 border-b-2 border-slate-300'
 										>
-											<article className='mr-3 md:min-w-[200px] md:max-w-[270px]  '>
+											<article className='mr-3'>
 												<p className='flex text-sm'>
 													Nombre:{' '}
 													<span
@@ -121,7 +121,7 @@ const AdminPage = () => {
 												</p>{' '}
 											</article>
 
-											<article className='mr-3 md:min-w-[250px] md:max-w-[250px]'>
+											<article className='mr-3'>
 												<p className='flex text-sm'>
 													Mail:{' '}
 													<span
@@ -131,7 +131,7 @@ const AdminPage = () => {
 													</span>
 												</p>{' '}
 											</article>
-											<article className='mr-3 md:min-w-[130px] md:max-w-[130px]'>
+											<article className='mr-3'>
 												<p className='flex text-sm'>
 													Tlfno:{' '}
 													<span
@@ -141,7 +141,7 @@ const AdminPage = () => {
 													</span>
 												</p>{' '}
 											</article>
-											<article className='mr-3 md:min-w-[100px] md:max-w-[100px]'>
+											<article className='mr-3'>
 												<p className='flex text-sm'>
 													{paid ? (
 														<span
