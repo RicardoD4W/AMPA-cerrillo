@@ -47,7 +47,7 @@ const AdministrarNoticiasAll = () => {
 				</section>
 
 				<div className='inline-flex flex-wrap items-center justify-center gap-5'>
-					{publicacionesFiltradas.length > 0 ? (
+					{publicaciones && publicacionesFiltradas.length > 0 ? (
 						publicacionesFiltradas.map(
 							({
 								status,
